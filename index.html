@@ -10,7 +10,6 @@
 <meta name="apple-mobile-web-app-title" content="SEFOR 3">
 <meta name="description" content="Sistema de Acompanhamento Escolar - SEDUC CE">
 <link rel="manifest" href="manifest.json">
-<script src="https://apis.google.com/js/api.js"></script>
 <title>SEFOR 3 – Acompanhamento Escolar</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
@@ -245,7 +244,7 @@ tr:hover td{background:#FAFBFC;}
       <h1>SEFOR 3</h1>
       <p>Superintendência Escolar</p>
     </div>
-    <div class="gd-bar" id="gdBar"><div class="gd-dot"></div><span id="gdTxt">Google Drive desconectado</span></div>
+    <div class="gd-bar" id="gdBar"><div class="gd-dot"></div><span id="gdTxt">Nuvem desconectada</span></div>
     <div class="sb-user">
       <div class="sb-av" id="uav">S</div>
       <div class="sb-uinf"><p id="uname">—</p><span id="urole">Superintendente</span></div>
@@ -439,27 +438,26 @@ tr:hover td{background:#FAFBFC;}
 </div>
 
 
-<div class="mov" id="mod-gdsetup">
+
+
+<div class="mov" id="mod-sinc">
   <div class="modal">
-    <div class="mhdr"><h3>☁️ Configurar Google Drive</h3><button class="mx" onclick="closeMod('gdsetup')">×</button></div>
-    <div class="hbox">
-      Para sincronizar com o Google Drive, você precisa de um <strong>Client ID gratuito</strong> do Google.<br><br>
-      <strong>Passo a passo (10 minutos):</strong><br>
-      1. Acesse <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a><br>
-      2. Crie um projeto novo<br>
-      3. APIs e Serviços → Credenciais<br>
-      4. Criar credencial → ID do cliente OAuth<br>
-      5. Tipo: Aplicativo Web<br>
-      6. Origens: <code>https://fernandomariosefor3.github.io</code><br>
-      7. Copie o Client ID e cole abaixo
-    </div>
+    <div class="mhdr"><h3>🔗 Código de Sincronização</h3><button class="mx" onclick="closeMod('sinc')">×</button></div>
+    <div class="hbox">Use este código para sincronizar entre tablet e computador. Cole o código no outro dispositivo para acessar os mesmos dados.</div>
     <div class="fg">
-      <label class="fl">Client ID do Google</label>
-      <input class="fi" id="gd_cid" placeholder="xxxxx.apps.googleusercontent.com">
+      <label class="fl">Seu código de sync</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input class="fi" id="sinc_code" readonly placeholder="Salve na nuvem primeiro para gerar o código">
+        <button class="btn bp bsm" onclick="copiarCodigo()">Copiar</button>
+      </div>
     </div>
-    <div class="brow">
-      <button class="btn bo" style="flex:1" onclick="closeMod('gdsetup')">Cancelar</button>
-      <button class="btn bp" style="flex:1" onclick="gdSaveClientId()">✅ Salvar e Conectar</button>
+    <div style="height:1px;background:var(--bdr);margin:14px 0"></div>
+    <div class="fg">
+      <label class="fl">Inserir código de outro dispositivo</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input class="fi" id="sinc_input" placeholder="Cole o código aqui">
+        <button class="btn bs bsm" onclick="aplicarCodigo()">Aplicar</button>
+      </div>
     </div>
   </div>
 </div>
@@ -832,145 +830,120 @@ function showErr(id,msg){const el=document.getElementById(id);if(el){el.style.di
 let tt;
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),3000);}
 
-window.gdSaveClientId = function(){
-  const cid = document.getElementById('gd_cid').value.trim();
-  if(!cid || !cid.includes('.apps.googleusercontent.com')){
-    toast('⚠️ Cole um Client ID válido.');return;
-  }
-  localStorage.setItem('sefor_gd_cid', cid);
-  closeMod('gdsetup');
-  toast('✅ Client ID salvo! Tente conectar novamente.');
-  location.reload();
-};
-window.toast=toast;
 
-// ─── GOOGLE DRIVE ─────────────────────────────────────────
-// INSTRUÇÕES: Para ativar o Google Drive, você precisa de um
-// Client ID gratuito do Google Cloud Console.
-// Passos: console.cloud.google.com → Novo projeto → APIs e Serviços
-// → Credenciais → Criar ID do cliente OAuth → Aplicativo Web
-// → Adicionar origem: https://fernandomariosefor3.github.io
-// Cole o Client ID abaixo:
-const GD_CLIENT_ID = localStorage.getItem('sefor_gd_cid') || 'SEU_CLIENT_ID_AQUI.apps.googleusercontent.com';
-const GD_SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
-const GD_FILE = 'sefor3-dados.json';
+// ─── JSONBIN SYNC ─────────────────────────────────────────
+const JB_KEY = '$2a$10$EgmDaZoOXnzZxoksPi/1XeT/JY9flCE8BHg38v5gdUqkki2Dz0Qjy';
+const JB_URL = 'https://api.jsonbin.io/v3/b';
+let JB_BIN_ID = localStorage.getItem('sefor_bin_id') || null;
 
-let gdToken = null;
-let gdFileId = null;
-
-function gdSetStatus(msg, ok) {
+function jbSetStatus(msg, ok) {
   const bar = document.getElementById('gdBar');
   const txt = document.getElementById('gdTxt');
-  if (bar) { bar.className = 'gd-bar' + (ok === true ? ' ok' : ok === false ? ' err' : ''); }
+  if (bar) bar.className = 'gd-bar' + (ok === true ? ' ok' : ok === false ? ' err' : '');
   if (txt) txt.textContent = msg;
 }
 
-function gdInit() {
-  return new Promise((res, rej) => {
-    if (!window.gapi) { rej('API Google não carregou'); return; }
-    gapi.load('client:auth2', async () => {
-      try {
-        await gapi.client.init({
-          clientId: GD_CLIENT_ID,
-          scope: GD_SCOPE,
-          discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
-        });
-        res(gapi.auth2.getAuthInstance());
-      } catch(e) { rej(e); }
-    });
-  });
-}
-
-async function gdLogin() {
+window.jbSalvar = async function() {
+  jbSetStatus('Salvando na nuvem...', null);
   try {
-    if (GD_CLIENT_ID === 'SEU_CLIENT_ID_AQUI.apps.googleusercontent.com') {
-      toast('⚠️ Configure o Client ID do Google primeiro. Veja as instruções no menu.');
-      openMod('gdsetup');
-      return null;
+    const data = {schools, freqRec, avalRec, projList, evtList, savedAt: new Date().toISOString()};
+    let res, result;
+    if (JB_BIN_ID) {
+      // Atualiza bin existente
+      res = await fetch(`${JB_URL}/${JB_BIN_ID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JB_KEY
+        },
+        body: JSON.stringify(data)
+      });
+    } else {
+      // Cria novo bin
+      res = await fetch(JB_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JB_KEY,
+          'X-Bin-Name': 'SEFOR3-dados',
+          'X-Bin-Private': 'true'
+        },
+        body: JSON.stringify(data)
+      });
+      result = await res.json();
+      JB_BIN_ID = result.metadata?.id;
+      if (JB_BIN_ID) localStorage.setItem('sefor_bin_id', JB_BIN_ID);
     }
-    gdSetStatus('Conectando ao Google...', null);
-    const auth = await gdInit();
-    if (!auth.isSignedIn.get()) await auth.signIn();
-    gdToken = gapi.client.getToken().access_token;
-    gdSetStatus('☁️ Drive conectado', true);
-    toast('✅ Google Drive conectado!');
-    return gdToken;
+    if (!result) result = await res.json();
+    if (res.ok) {
+      jbSetStatus('☁️ Salvo: ' + new Date().toLocaleTimeString('pt-BR'), true);
+      toast('☁️ Dados salvos na nuvem!');
+    } else {
+      throw new Error(result.message || 'Erro desconhecido');
+    }
   } catch(e) {
-    gdSetStatus('Erro ao conectar Drive', false);
-    toast('❌ Erro Google Drive: ' + (e.error || e.message || e));
-    return null;
-  }
-}
-
-async function gdGetFileId() {
-  try {
-    const res = await gapi.client.drive.files.list({
-      spaces: 'appDataFolder',
-      q: `name='${GD_FILE}'`,
-      fields: 'files(id,name)'
-    });
-    const files = res.result.files;
-    return files && files.length > 0 ? files[0].id : null;
-  } catch { return null; }
-}
-
-window.gdSalvar = async function() {
-  const tk = gdToken || await gdLogin();
-  if (!tk) return;
-  gdSetStatus('Salvando no Drive...', null);
-  try {
-    const data = JSON.stringify({schools,freqRec,avalRec,projList,evtList,savedAt:new Date().toISOString()});
-    const fid = gdFileId || await gdGetFileId();
-    const meta = { name: GD_FILE, parents: fid ? undefined : ['appDataFolder'] };
-    const form = new FormData();
-    form.append('metadata', new Blob([JSON.stringify(meta)], {type:'application/json'}));
-    form.append('file', new Blob([data], {type:'application/json'}));
-    const url = fid
-      ? `https://www.googleapis.com/upload/drive/v3/files/${fid}?uploadType=multipart`
-      : 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart';
-    const method = fid ? 'PATCH' : 'POST';
-    const res = await fetch(url, {
-      method,
-      headers: { Authorization: 'Bearer ' + gdToken },
-      body: form
-    });
-    const result = await res.json();
-    gdFileId = result.id;
-    gdSetStatus('☁️ Salvo: ' + new Date().toLocaleTimeString('pt-BR'), true);
-    toast('☁️ Dados salvos no Google Drive!');
-  } catch(e) {
-    gdSetStatus('Erro ao salvar', false);
+    jbSetStatus('Erro ao salvar', false);
     toast('❌ Erro ao salvar: ' + e.message);
   }
 };
 
-window.gdCarregar = async function() {
-  const tk = gdToken || await gdLogin();
-  if (!tk) return;
-  gdSetStatus('Carregando do Drive...', null);
+window.jbCarregar = async function() {
+  if (!JB_BIN_ID) {
+    toast('⚠️ Salve os dados primeiro neste dispositivo para criar a nuvem.');
+    return;
+  }
+  jbSetStatus('Carregando da nuvem...', null);
   try {
-    const fid = await gdGetFileId();
-    if (!fid) { toast('⚠️ Nenhum dado encontrado no Drive. Salve primeiro.'); gdSetStatus('☁️ Drive conectado', true); return; }
-    gdFileId = fid;
-    const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fid}?alt=media`, {
-      headers: { Authorization: 'Bearer ' + gdToken }
+    const res = await fetch(`${JB_URL}/${JB_BIN_ID}/latest`, {
+      headers: { 'X-Master-Key': JB_KEY }
     });
-    const data = await res.json();
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.message || 'Erro');
+    const data = result.record;
     if (data.schools) schools = data.schools;
     if (data.freqRec) freqRec = data.freqRec;
     if (data.avalRec) avalRec = data.avalRec;
     if (data.projList) projList = data.projList;
     if (data.evtList) evtList = data.evtList;
     saveData(); renderAll();
-    gdSetStatus('☁️ Carregado: ' + new Date().toLocaleTimeString('pt-BR'), true);
-    toast('✅ Dados carregados do Google Drive!');
+    jbSetStatus('☁️ Carregado: ' + new Date().toLocaleTimeString('pt-BR'), true);
+    toast('✅ Dados carregados da nuvem!');
   } catch(e) {
-    gdSetStatus('Erro ao carregar', false);
-    toast('❌ Erro ao carregar: ' + e.message);
+    jbSetStatus('Erro ao carregar', false);
+    toast('❌ Erro: ' + e.message);
   }
 };
 
-// Auto-salva no Drive a cada 5 min se conectado
+// Auto-salva a cada 3 minutos
+setInterval(() => { if (JB_BIN_ID) jbSalvar(); }, 3 * 60 * 1000);
+
+
+window.copiarCodigo = function(){
+  const el = document.getElementById('sinc_code');
+  if (!JB_BIN_ID) { toast('⚠️ Salve na nuvem primeiro para gerar o código.'); return; }
+  el.value = JB_BIN_ID;
+  navigator.clipboard.writeText(JB_BIN_ID).then(()=>toast('✅ Código copiado! Cole no outro dispositivo.')).catch(()=>{el.select();document.execCommand('copy');toast('✅ Código copiado!');});
+};
+window.aplicarCodigo = function(){
+  const code = document.getElementById('sinc_input').value.trim();
+  if (!code) { toast('⚠️ Cole o código primeiro.'); return; }
+  JB_BIN_ID = code;
+  localStorage.setItem('sefor_bin_id', code);
+  closeMod('sinc');
+  jbCarregar();
+};
+// Show bin_id in modal when opened
+const origOpenMod = window.openMod;
+window.openMod = function(id) {
+  if (id === 'sinc') {
+    const el = document.getElementById('sinc_code');
+    if (el) el.value = JB_BIN_ID || '';
+  }
+  origOpenMod(id);
+};
+
+window.toast=toast;
+
 setInterval(() => { if (gdToken) gdSalvar(); }, 5 * 60 * 1000);
 
 
