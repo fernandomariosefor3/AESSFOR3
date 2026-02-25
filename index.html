@@ -263,9 +263,12 @@ tr:hover td{background:#FAFBFC;}
       <div class="ni" onclick="nav('calendario',this)"><div class="nico">📆</div>Calendário</div>
     </div>
     <div class="navsec">
-      <div class="navlbl">Dados</div>
-      <div class="ni" onclick="exportarDados()"><div class="nico">📥</div>Exportar Dados</div>
-      <div class="ni" onclick="importarDados()"><div class="nico">📤</div>Importar Dados</div>
+      <div class="navlbl">Nuvem &amp; Dados</div>
+      <div class="ni" onclick="jbSalvar()"><div class="nico">☁️</div>Salvar na Nuvem</div>
+      <div class="ni" onclick="jbCarregar()"><div class="nico">🔄</div>Carregar da Nuvem</div>
+      <div class="ni" onclick="openMod('sinc')"><div class="nico">🔗</div>Código de Sync</div>
+      <div class="ni" onclick="exportarDados()"><div class="nico">📥</div>Exportar Backup</div>
+      <div class="ni" onclick="importarDados()"><div class="nico">📤</div>Importar Backup</div>
     </div>
     <div class="sb-foot">
       <button class="logout-btn" onclick="doLogout()">↩ Sair do sistema</button>
