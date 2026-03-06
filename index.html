@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,19 +16,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 :root{
-  --p:#0A3D6B;--pl:#1565A8;--acc:#F59E0B;--ok:#10B981;--warn:#F59E0B;--err:#EF4444;
-  --bg:#F0F4F8;--card:#fff;--sw:255px;--txt:#1A2332;--muted:#6B7A8D;--bdr:#D6E0EC;
+--p:#0A3D6B;--pl:#1565A8;--acc:#F59E0B;--ok:#10B981;--warn:#F59E0B;--err:#EF4444;
+--bg:#F0F4F8;--card:#fff;--sw:255px;--txt:#1A2332;--muted:#6B7A8D;--bdr:#D6E0EC;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--txt);font-size:13.5px;}
-
-/* LOGIN */
 .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0A3D6B 0%,#1565A8 100%);padding:20px;}
 .login-box{background:#fff;border-radius:18px;padding:36px 32px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
 .login-logo{text-align:center;margin-bottom:24px;}
 .badge{display:inline-block;background:var(--acc);color:#000;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
 .login-logo h1{font-size:26px;font-weight:800;color:var(--p);margin-top:6px;}
 .login-logo p{font-size:12px;color:var(--muted);margin-top:3px;}
+.admin-info{background:#FEF3C7;border:1px solid #F59E0B;border-radius:8px;padding:10px 12px;font-size:11.5px;color:#92400E;margin-bottom:16px;line-height:1.5;}
+.admin-info strong{color:#78350F;}
 .fg{margin-bottom:12px;}
 .fl{display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin-bottom:4px;}
 .fi,.fs,.ft{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--bdr);font-family:'Sora',sans-serif;font-size:13px;color:var(--txt);outline:none;transition:border-color .2s;background:#fff;}
@@ -44,8 +45,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--txt);font-si
 .brow{display:flex;gap:8px;margin-top:12px;}
 .ebox{background:#FEF2F2;border-radius:8px;padding:8px 12px;font-size:12px;color:#991B1B;margin-top:8px;display:none;}
 .sbox{background:#ECFDF5;border-radius:8px;padding:8px 12px;font-size:12px;color:#065F46;margin-top:8px;display:none;}
-
-/* APP */
 .app{display:none;min-height:100vh;}
 .app.on{display:flex;}
 .sidebar{width:var(--sw);background:var(--p);min-height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:100;transition:transform .3s;overflow-y:auto;}
@@ -66,8 +65,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--txt);font-si
 .sb-foot{margin-top:auto;padding:12px 16px;border-top:1px solid rgba(255,255,255,.1);}
 .logout-btn{background:rgba(255,255,255,.07);border:none;color:rgba(255,255,255,.5);padding:6px 10px;border-radius:7px;cursor:pointer;font-size:12px;width:100%;font-family:'Sora',sans-serif;transition:all .2s;}
 .logout-btn:hover{background:rgba(239,68,68,.2);color:#fff;}
-
-/* MAIN */
 .main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-width:0;}
 .topbar{background:#fff;border-bottom:1px solid var(--bdr);padding:11px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
 .tl h2{font-size:15px;font-weight:700;}
@@ -78,8 +75,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--txt);font-si
 .page{display:none;animation:fi .25s ease;}
 .page.on{display:block;}
 @keyframes fi{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-
-/* STATS */
 .sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px;}
 .sc{background:#fff;border-radius:11px;border:1px solid var(--bdr);padding:14px;position:relative;overflow:hidden;}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
@@ -90,29 +85,21 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--txt);font-si
 .sc.y .sico{background:#FFFBEB;}.sc.r .sico{background:#FEF2F2;}
 .sv{font-size:22px;font-weight:800;line-height:1;margin-bottom:2px;}
 .sl{font-size:10.5px;color:var(--muted);}
-
-/* CARD */
 .card{background:#fff;border-radius:11px;border:1px solid var(--bdr);padding:16px;margin-bottom:12px;}
 .ctit{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
 .shdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .shdr h3{font-size:13.5px;font-weight:700;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
-
-/* TABLE */
 .tw{overflow-x:auto;}
 table{width:100%;border-collapse:collapse;}
 th{text-align:left;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;padding:7px 11px;border-bottom:1.5px solid var(--bdr);}
 td{padding:10px 11px;font-size:12.5px;border-bottom:1px solid var(--bdr);vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:#FAFBFC;}
-
-/* BADGES */
 .badge2{padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;}
 .bg2{background:#D1FAE5;color:#065F46;}.by2{background:#FEF3C7;color:#92400E;}
 .br2{background:#FEE2E2;color:#991B1B;}.bb2{background:#DBEAFE;color:#1E40AF;}
 .bgr2{background:#F1F5F9;color:#475569;}
-
-/* RANK */
 .ri{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--bdr);}
 .ri:last-child{border-bottom:none;}
 .rn{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:800;flex-shrink:0;}
@@ -122,16 +109,12 @@ tr:hover td{background:#FAFBFC;}
 .ri-info p{font-size:12.5px;font-weight:500;}
 .fbar{height:4px;border-radius:2px;background:var(--bdr);overflow:hidden;margin-top:3px;width:100%;max-width:120px;}
 .ffil{height:100%;border-radius:2px;transition:width .5s;}
-
-/* CHECKLIST */
 .cki{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bdr);font-size:12.5px;}
 .cki:last-child{border-bottom:none;}
 .cks{padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:600;cursor:pointer;transition:all .2s;user-select:none;}
 .cks.ativo{background:#D1FAE5;color:#065F46;}
 .cks.parcial{background:#FEF3C7;color:#92400E;}
 .cks.inativo{background:#FEE2E2;color:#991B1B;}
-
-/* PROJECTS */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:11px;}
 .pcard{background:#fff;border:1px solid var(--bdr);border-radius:11px;padding:14px;transition:transform .2s,box-shadow .2s;}
 .pcard:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07);}
@@ -139,8 +122,6 @@ tr:hover td{background:#FAFBFC;}
 .ptag{font-size:10.5px;color:var(--p);font-weight:600;margin-bottom:5px;}
 .pcard p{font-size:11.5px;color:var(--muted);line-height:1.5;}
 .pmeta{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;}
-
-/* CALENDAR */
 .cgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
 .cdh{text-align:center;font-size:9.5px;font-weight:700;color:var(--muted);padding:4px;text-transform:uppercase;}
 .cday{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:3px 2px;border-radius:6px;font-size:12px;cursor:pointer;transition:background .15s;min-height:34px;}
@@ -148,8 +129,6 @@ tr:hover td{background:#FAFBFC;}
 .cday.today{background:var(--p);color:#fff;font-weight:700;}
 .cday.hev::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc);margin-top:2px;display:block;}
 .cday.om{opacity:.25;}
-
-/* EVENTS */
 .eitem{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--bdr);}
 .eitem:last-child{border-bottom:none;}
 .edate{width:36px;height:36px;border-radius:8px;background:var(--p);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;line-height:1.1;}
@@ -157,28 +136,19 @@ tr:hover td{background:#FAFBFC;}
 .einfo{flex:1;}
 .einfo p{font-size:12.5px;font-weight:500;}
 .einfo span{font-size:10.5px;color:var(--muted);}
-
-/* MODAL */
 .mov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:1000;padding:15px;}
 .mov.open{display:flex;}
 .modal{background:#fff;border-radius:14px;padding:22px;width:100%;max-width:450px;max-height:90vh;overflow-y:auto;}
 .mhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
 .mhdr h3{font-size:14px;font-weight:700;}
 .mx{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);}
-
-/* TOAST */
 .toast{position:fixed;bottom:16px;right:16px;background:var(--txt);color:#fff;padding:9px 14px;border-radius:9px;font-size:12.5px;font-weight:500;z-index:9999;transform:translateY(60px);opacity:0;transition:all .3s;max-width:280px;}
 .toast.show{transform:translateY(0);opacity:1;}
-
-/* TABS LOGIN */
 .ltabs{display:flex;border-radius:9px;overflow:hidden;border:1.5px solid var(--bdr);margin-bottom:18px;}
 .ltab{flex:1;padding:8px;text-align:center;font-size:12.5px;font-weight:600;cursor:pointer;background:#fff;color:var(--muted);transition:all .2s;}
 .ltab.on{background:var(--p);color:#fff;}
-
-/* ALERTS */
 .hbox{background:#EFF6FF;border-left:3px solid var(--p);border-radius:8px;padding:9px 12px;font-size:12px;color:#1E40AF;margin-bottom:12px;line-height:1.6;}
 .wbox{background:#FFFBEB;border-left:3px solid var(--acc);border-radius:8px;padding:9px 12px;font-size:12px;color:#92400E;margin-bottom:12px;line-height:1.6;}
-
 .gd-bar{display:flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08);font-size:10.5px;color:rgba(255,255,255,.5);}
 .gd-bar.ok{background:rgba(16,185,129,.1);color:#6EE7B7;}
 .gd-bar.err{background:rgba(239,68,68,.1);color:#FCA5A5;}
@@ -192,792 +162,708 @@ tr:hover td{background:#FAFBFC;}
 .ibtn{background:var(--acc);color:#000;border:none;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;font-size:13px;white-space:nowrap;}
 .iclose{background:rgba(255,255,255,.15);border:none;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:16px;margin-left:8px;}
 @media(max-width:768px){
-  .sidebar{transform:translateX(-100%);}
-  .sidebar.open{transform:translateX(0);}
-  .main{margin-left:0;}
-  .hbg{display:block;}
-  .g2{grid-template-columns:1fr;}
-  .sgrid{grid-template-columns:repeat(2,1fr);}
-  .content{padding:12px;}
-  .fg2{grid-template-columns:1fr;}
+.sidebar{transform:translateX(-100%);}
+.sidebar.open{transform:translateX(0);}
+.main{margin-left:0;}
+.hbg{display:block;}
+.g2{grid-template-columns:1fr;}
+.sgrid{grid-template-columns:repeat(2,1fr);}
+.content{padding:12px;}
+.fg2{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
-
 <!-- LOGIN -->
 <div class="login-wrap" id="loginScreen">
-  <div class="login-box">
-    <div class="login-logo">
-      <div class="badge">SEDUC CE</div>
-      <h1>SEFOR 3</h1>
-      <p>Sistema de Acompanhamento Escolar</p>
-    </div>
-    <div class="ltabs">
-      <div class="ltab on" id="t1" onclick="ltab('login')">Entrar</div>
-      <div class="ltab" id="t2" onclick="ltab('criar')">Criar Conta</div>
-    </div>
-    <!-- ENTRAR -->
-    <div id="p1">
-      <div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" id="lemail" placeholder="seu@email.com"></div>
-      <div class="fg"><label class="fl">Senha</label><input class="fi" type="password" id="lpass" placeholder="••••••••"></div>
-      <button class="btn bp bfull" onclick="doLogin()" style="margin-top:4px">Entrar no Sistema</button>
-      <div class="ebox" id="lerr"></div>
-    </div>
-    <!-- CRIAR -->
-    <div id="p2" style="display:none">
-      <div class="hbox">Crie sua conta local. Os dados ficam salvos neste navegador.</div>
-      <div class="fg"><label class="fl">Nome completo</label><input class="fi" id="cnome" placeholder="Seu nome"></div>
-      <div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" id="cemail" placeholder="seu@email.com"></div>
-      <div class="fg"><label class="fl">Senha (mín. 6 caracteres)</label><input class="fi" type="password" id="csenha" placeholder="Crie uma senha"></div>
-      <button class="btn bp bfull" onclick="criarConta()" style="margin-top:4px">✅ Criar Conta</button>
-      <div class="ebox" id="cerr"></div>
-    </div>
-  </div>
+<div class="login-box">
+<div class="login-logo">
+<div class="badge">SEDUC CE</div>
+<h1>SEFOR 3</h1>
+<p>Sistema de Acompanhamento Escolar</p>
 </div>
-
+<div class="admin-info">
+<strong>🔐 Acesso Administrador:</strong><br>
+E-mail: <strong>admin@seduc.ce.gov.br</strong><br>
+Senha: <strong>admin123</strong>
+</div>
+<div class="ltabs">
+<div class="ltab on" id="t1" onclick="ltab('login')">Entrar</div>
+<div class="ltab" id="t2" onclick="ltab('criar')">Criar Conta</div>
+</div>
+<div id="p1">
+<div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" id="lemail" placeholder="seu@email.com"></div>
+<div class="fg"><label class="fl">Senha</label><input class="fi" type="password" id="lpass" placeholder="••••••••"></div>
+<button class="btn bp bfull" onclick="doLogin()" style="margin-top:4px">Entrar no Sistema</button>
+<div class="ebox" id="lerr"></div>
+</div>
+<div id="p2" style="display:none">
+<div class="hbox">Crie sua conta local. Os dados ficam salvos neste navegador.</div>
+<div class="fg"><label class="fl">Nome completo</label><input class="fi" id="cnome" placeholder="Seu nome"></div>
+<div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" id="cemail" placeholder="seu@email.com"></div>
+<div class="fg"><label class="fl">Senha (mín. 6 caracteres)</label><input class="fi" type="password" id="csenha" placeholder="Crie uma senha"></div>
+<button class="btn bp bfull" onclick="criarConta()" style="margin-top:4px">✅ Criar Conta</button>
+<div class="ebox" id="cerr"></div>
+</div>
+</div>
+</div>
 <!-- APP -->
 <div class="app" id="appScreen">
-  <aside class="sidebar" id="sidebar">
-    <div class="sb-logo">
-      <div class="badge" style="margin-bottom:6px">SEDUC CE</div>
-      <h1>SEFOR 3</h1>
-      <p>Superintendência Escolar</p>
-    </div>
-    <div class="gd-bar" id="gdBar"><div class="gd-dot"></div><span id="gdTxt">Nuvem desconectada</span></div>
-    <div class="sb-user">
-      <div class="sb-av" id="uav">S</div>
-      <div class="sb-uinf"><p id="uname">—</p><span id="urole">Superintendente</span></div>
-    </div>
-    <div class="navsec">
-      <div class="navlbl">Principal</div>
-      <div class="ni on" onclick="nav('dashboard',this)"><div class="nico">📊</div>Dashboard</div>
-      <div class="ni" onclick="nav('escolas',this)"><div class="nico">🏫</div>Escolas</div>
-    </div>
-    <div class="navsec">
-      <div class="navlbl">Módulos</div>
-      <div class="ni" onclick="nav('frequencia',this)"><div class="nico">📅</div>Frequência</div>
-      <div class="ni" onclick="nav('avaliacoes',this)"><div class="nico">📚</div>Avaliações</div>
-      <div class="ni" onclick="nav('ambientes',this)"><div class="nico">🏛️</div>Ambientes</div>
-      <div class="ni" onclick="nav('projetos',this)"><div class="nico">🚀</div>Projetos</div>
-      <div class="ni" onclick="nav('calendario',this)"><div class="nico">📆</div>Calendário</div>
-    </div>
-    <div class="navsec">
-      <div class="navlbl">Nuvem &amp; Dados</div>
-      <div class="ni" onclick="jbSalvar()"><div class="nico">☁️</div>Salvar na Nuvem</div>
-      <div class="ni" onclick="jbCarregar()"><div class="nico">🔄</div>Carregar da Nuvem</div>
-      <div class="ni" onclick="openMod('sinc')"><div class="nico">🔗</div>Código de Sync</div>
-      <div class="ni" onclick="exportarDados()"><div class="nico">📥</div>Exportar Backup</div>
-      <div class="ni" onclick="importarDados()"><div class="nico">📤</div>Importar Backup</div>
-    </div>
-    <div class="sb-foot">
-      <button class="logout-btn" onclick="doLogout()">↩ Sair do sistema</button>
-    </div>
-  </aside>
-
-  <main class="main">
-    <div class="topbar">
-      <div style="display:flex;align-items:center;gap:9px">
-        <button class="hbg" onclick="document.getElementById('sidebar').classList.toggle('open')"><span></span><span></span><span></span></button>
-        <div class="tl"><h2 id="ptitle">Dashboard</h2><p id="psub">Visão consolidada · SEFOR 3</p></div>
-      </div>
-      <button class="btn bp bsm" onclick="openMod('reg')">+ Registrar</button>
-    </div>
-
-    <div class="content">
-
-      <!-- DASHBOARD -->
-      <div class="page on" id="page-dashboard">
-        <div class="sgrid">
-          <div class="sc b"><div class="sico">🏫</div><div class="sv" id="sv_esc" style="color:var(--p)">7</div><div class="sl">Escolas</div></div>
-          <div class="sc g"><div class="sico">✅</div><div class="sv" id="sv_freq" style="color:var(--ok)">—</div><div class="sl">Freq. Média</div></div>
-          <div class="sc y"><div class="sico">📚</div><div class="sv" id="sv_aval" style="color:var(--acc)">—</div><div class="sl">Média Aval.</div></div>
-          <div class="sc r"><div class="sico">⚠️</div><div class="sv" id="sv_alert" style="color:var(--err)">0</div><div class="sl">Alertas</div></div>
-        </div>
-        <div class="g2">
-          <div class="card"><div class="ctit">Frequência por Escola</div><canvas id="freqChart" height="190"></canvas></div>
-          <div class="card"><div class="ctit">Evolução Mensal</div><canvas id="evolChart" height="190"></canvas></div>
-        </div>
-        <div class="card"><div class="shdr"><h3>🏆 Ranking de Frequência</h3></div><div id="rankBox"></div></div>
-      </div>
-
-      <!-- ESCOLAS -->
-      <div class="page" id="page-escolas">
-        <div class="shdr"><h3>Escolas Acompanhadas</h3><button class="btn bp bsm" onclick="openMod('escola')">✏️ Editar Escola</button></div>
-        <div class="card"><div class="tw"><table><thead><tr><th>Escola</th><th>Segmento</th><th>Diretor(a)</th><th>Alunos</th><th>Frequência</th></tr></thead><tbody id="escolaTb"></tbody></table></div></div>
-      </div>
-
-      <!-- FREQUÊNCIA -->
-      <div class="page" id="page-frequencia">
-        <div class="g2">
-          <div class="card">
-            <div class="ctit">Registrar Frequência</div>
-            <div class="fg"><label class="fl">Escola</label><select class="fs" id="f_e"></select></div>
-            <div class="fg2">
-              <div class="fg"><label class="fl">Turma</label><input class="fi" id="f_t" placeholder="Ex: 1A"></div>
-              <div class="fg"><label class="fl">Frequência (%)</label><input class="fi" type="number" id="f_p" min="0" max="100" step="0.1" placeholder="87.5"></div>
-            </div>
-            <div class="fg"><label class="fl">Mês</label><input class="fi" type="month" id="f_m"></div>
-            <div class="fg"><label class="fl">Observação</label><textarea class="ft" id="f_o" placeholder="Fatores que impactaram a frequência..."></textarea></div>
-            <button class="btn bp bfull" onclick="saveFreq()">💾 Salvar Frequência</button>
-          </div>
-          <div class="card"><div class="ctit">Médias por Escola</div><canvas id="freqChart2" height="200"></canvas></div>
-        </div>
-        <div class="card"><div class="shdr"><h3>Histórico de Frequência</h3></div><div class="tw"><table><thead><tr><th>Data</th><th>Escola</th><th>Turma</th><th>Mês</th><th>%</th><th></th></tr></thead><tbody id="fHist"></tbody></table></div></div>
-      </div>
-
-      <!-- AVALIAÇÕES -->
-      <div class="page" id="page-avaliacoes">
-        <div class="g2">
-          <div class="card">
-            <div class="ctit">Registrar Avaliação</div>
-            <div class="fg"><label class="fl">Escola</label><select class="fs" id="a_e"></select></div>
-            <div class="fg2">
-              <div class="fg"><label class="fl">Bimestre</label><select class="fs" id="a_b"><option>1º Bimestre</option><option>2º Bimestre</option><option>3º Bimestre</option><option>4º Bimestre</option></select></div>
-              <div class="fg"><label class="fl">Disciplina</label><input class="fi" id="a_d" placeholder="Ex: Matemática"></div>
-            </div>
-            <div class="fg"><label class="fl">Média da Turma</label><input class="fi" type="number" id="a_m" min="0" max="10" step="0.1" placeholder="7.5"></div>
-            <div class="fg"><label class="fl">Análise</label><textarea class="ft" id="a_a" placeholder="Pontos fortes e ações previstas..."></textarea></div>
-            <button class="btn bp bfull" onclick="saveAval()">💾 Salvar Avaliação</button>
-          </div>
-          <div class="card"><div class="ctit">Médias por Disciplina</div><canvas id="discChart" height="200"></canvas></div>
-        </div>
-        <div class="card"><div class="shdr"><h3>Histórico de Avaliações</h3></div><div class="tw"><table><thead><tr><th>Data</th><th>Escola</th><th>Bimestre</th><th>Disciplina</th><th>Média</th><th></th></tr></thead><tbody id="aHist"></tbody></table></div></div>
-      </div>
-
-      <!-- AMBIENTES -->
-      <div class="page" id="page-ambientes">
-        <div class="g2">
-          <div class="card">
-            <div class="shdr"><h3>Checklist de Ambientes</h3>
-              <select class="fs" id="ck_e" onchange="renderChecklist()" style="width:auto;font-size:12px"></select>
-            </div>
-            <div id="ckBox"></div>
-          </div>
-          <div class="card"><div class="ctit">Status por Escola</div><canvas id="ambChart" height="220"></canvas></div>
-        </div>
-      </div>
-
-      <!-- PROJETOS -->
-      <div class="page" id="page-projetos">
-        <div class="shdr"><h3>Projetos Pedagógicos</h3><button class="btn bp bsm" onclick="openMod('proj')">+ Novo Projeto</button></div>
-        <div class="pgrid" id="projGrid"></div>
-      </div>
-
-      <!-- CALENDÁRIO -->
-      <div class="page" id="page-calendario">
-        <div class="g2">
-          <div class="card">
-            <div class="shdr"><h3 id="calTit">Calendário</h3></div>
-            <div class="cgrid" id="calGrid"></div>
-          </div>
-          <div class="card">
-            <div class="ctit">Adicionar Evento</div>
-            <div class="fg"><label class="fl">Tipo</label><select class="fs" id="ev_t"><option>Avaliação Externa</option><option>Reunião</option><option>Formação Continuada</option><option>Conselho de Classe</option><option>Visita da Superintendência</option><option>Outro</option></select></div>
-            <div class="fg"><label class="fl">Título</label><input class="fi" id="ev_ti" placeholder="Ex: SPAECE Diagnóstica"></div>
-            <div class="fg2">
-              <div class="fg"><label class="fl">Data</label><input class="fi" type="date" id="ev_d"></div>
-              <div class="fg"><label class="fl">Horário</label><input class="fi" type="time" id="ev_h" value="08:00"></div>
-            </div>
-            <div class="fg"><label class="fl">Escola(s)</label><select class="fs" id="ev_e"><option value="todas">Todas as Escolas</option></select></div>
-            <button class="btn bp bfull" onclick="addEvent()">📅 Adicionar Evento</button>
-          </div>
-        </div>
-        <div class="card"><div class="shdr"><h3>Agenda</h3></div><div id="agBox"></div></div>
-      </div>
-
-    </div>
-  </main>
+<aside class="sidebar" id="sidebar">
+<div class="sb-logo">
+<div class="badge" style="margin-bottom:6px">SEDUC CE</div>
+<h1>SEFOR 3</h1>
+<p>Superintendência Escolar</p>
 </div>
-
+<div class="gd-bar" id="gdBar"><div class="gd-dot"></div><span id="gdTxt">Nuvem desconectada</span></div>
+<div class="sb-user">
+<div class="sb-av" id="uav">S</div>
+<div class="sb-uinf"><p id="uname">—</p><span id="urole">Superintendente</span></div>
+</div>
+<div class="navsec">
+<div class="navlbl">Principal</div>
+<div class="ni on" onclick="nav('dashboard',this)"><div class="nico">📊</div>Dashboard</div>
+<div class="ni" onclick="nav('escolas',this)"><div class="nico">🏫</div>Escolas</div>
+</div>
+<div class="navsec">
+<div class="navlbl">Módulos</div>
+<div class="ni" onclick="nav('frequencia',this)"><div class="nico">📅</div>Frequência</div>
+<div class="ni" onclick="nav('avaliacoes',this)"><div class="nico">📚</div>Avaliações</div>
+<div class="ni" onclick="nav('ambientes',this)"><div class="nico">🏛️</div>Ambientes</div>
+<div class="ni" onclick="nav('projetos',this)"><div class="nico">🚀</div>Projetos</div>
+<div class="ni" onclick="nav('calendario',this)"><div class="nico">📆</div>Calendário</div>
+</div>
+<div class="navsec">
+<div class="navlbl">Nuvem & Dados</div>
+<div class="ni" onclick="jbSalvar()"><div class="nico">☁️</div>Salvar na Nuvem</div>
+<div class="ni" onclick="jbCarregar()"><div class="nico">🔄</div>Carregar da Nuvem</div>
+<div class="ni" onclick="openMod('sinc')"><div class="nico">🔗</div>Código de Sync</div>
+<div class="ni" onclick="exportarDados()"><div class="nico">📥</div>Exportar Backup</div>
+<div class="ni" onclick="importarDados()"><div class="nico">📤</div>Importar Backup</div>
+</div>
+<div class="sb-foot">
+<button class="logout-btn" onclick="doLogout()">↩ Sair do sistema</button>
+</div>
+</aside>
+<main class="main">
+<div class="topbar">
+<div style="display:flex;align-items:center;gap:9px">
+<button class="hbg" onclick="document.getElementById('sidebar').classList.toggle('open')"><span></span><span></span><span></span></button>
+<div class="tl"><h2 id="ptitle">Dashboard</h2><p id="psub">Visão consolidada · SEFOR 3</p></div>
+</div>
+<button class="btn bp bsm" onclick="openMod('reg')">+ Registrar</button>
+</div>
+<div class="content">
+<!-- DASHBOARD -->
+<div class="page on" id="page-dashboard">
+<div class="sgrid">
+<div class="sc b"><div class="sico">🏫</div><div class="sv" id="sv_esc" style="color:var(--p)">7</div><div class="sl">Escolas</div></div>
+<div class="sc g"><div class="sico">✅</div><div class="sv" id="sv_freq" style="color:var(--ok)">—</div><div class="sl">Freq. Média</div></div>
+<div class="sc y"><div class="sico">📚</div><div class="sv" id="sv_aval" style="color:var(--acc)">—</div><div class="sl">Média Aval.</div></div>
+<div class="sc r"><div class="sico">⚠️</div><div class="sv" id="sv_alert" style="color:var(--err)">0</div><div class="sl">Alertas</div></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ctit">Frequência por Escola</div><canvas id="freqChart" height="190"></canvas></div>
+<div class="card"><div class="ctit">Evolução Mensal</div><canvas id="evolChart" height="190"></canvas></div>
+</div>
+<div class="card"><div class="shdr"><h3>🏆 Ranking de Frequência</h3></div><div id="rankBox"></div></div>
+</div>
+<!-- ESCOLAS -->
+<div class="page" id="page-escolas">
+<div class="shdr"><h3>Escolas Acompanhadas</h3><button class="btn bp bsm" onclick="openMod('escola')">✏️ Editar Escola</button></div>
+<div class="card"><div class="tw"><table><thead><tr><th>Escola</th><th>Segmento</th><th>Diretor(a)</th><th>Alunos</th><th>Frequência</th></tr></thead><tbody id="escolaTb"></tbody></table></div></div>
+</div>
+<!-- FREQUÊNCIA -->
+<div class="page" id="page-frequencia">
+<div class="g2">
+<div class="card">
+<div class="ctit">Registrar Frequência</div>
+<div class="fg"><label class="fl">Escola</label><select class="fs" id="f_e"></select></div>
+<div class="fg2">
+<div class="fg"><label class="fl">Turma</label><input class="fi" id="f_t" placeholder="Ex: 1A"></div>
+<div class="fg"><label class="fl">Frequência (%)</label><input class="fi" type="number" id="f_p" min="0" max="100" step="0.1" placeholder="87.5"></div>
+</div>
+<div class="fg"><label class="fl">Mês</label><input class="fi" type="month" id="f_m"></div>
+<div class="fg"><label class="fl">Observação</label><textarea class="ft" id="f_o" placeholder="Fatores que impactaram a frequência..."></textarea></div>
+<button class="btn bp bfull" onclick="saveFreq()">💾 Salvar Frequência</button>
+</div>
+<div class="card"><div class="ctit">Médias por Escola</div><canvas id="freqChart2" height="200"></canvas></div>
+</div>
+<div class="card"><div class="shdr"><h3>Histórico de Frequência</h3></div><div class="tw"><table><thead><tr><th>Data</th><th>Escola</th><th>Turma</th><th>Mês</th><th>%</th><th></th></tr></thead><tbody id="fHist"></tbody></table></div></div>
+</div>
+<!-- AVALIAÇÕES -->
+<div class="page" id="page-avaliacoes">
+<div class="g2">
+<div class="card">
+<div class="ctit">Registrar Avaliação</div>
+<div class="fg"><label class="fl">Escola</label><select class="fs" id="a_e"></select></div>
+<div class="fg2">
+<div class="fg"><label class="fl">Bimestre</label><select class="fs" id="a_b"><option>1º Bimestre</option><option>2º Bimestre</option><option>3º Bimestre</option><option>4º Bimestre</option></select></div>
+<div class="fg"><label class="fl">Disciplina</label><input class="fi" id="a_d" placeholder="Ex: Matemática"></div>
+</div>
+<div class="fg"><label class="fl">Média da Turma</label><input class="fi" type="number" id="a_m" min="0" max="10" step="0.1" placeholder="7.5"></div>
+<div class="fg"><label class="fl">Análise</label><textarea class="ft" id="a_a" placeholder="Pontos fortes e ações previstas..."></textarea></div>
+<button class="btn bp bfull" onclick="saveAval()">💾 Salvar Avaliação</button>
+</div>
+<div class="card"><div class="ctit">Médias por Disciplina</div><canvas id="discChart" height="200"></canvas></div>
+</div>
+<div class="card"><div class="shdr"><h3>Histórico de Avaliações</h3></div><div class="tw"><table><thead><tr><th>Data</th><th>Escola</th><th>Bimestre</th><th>Disciplina</th><th>Média</th><th></th></tr></thead><tbody id="aHist"></tbody></table></div></div>
+</div>
+<!-- AMBIENTES -->
+<div class="page" id="page-ambientes">
+<div class="g2">
+<div class="card">
+<div class="shdr"><h3>Checklist de Ambientes</h3>
+<select class="fs" id="ck_e" onchange="renderChecklist()" style="width:auto;font-size:12px"></select>
+</div>
+<div id="ckBox"></div>
+</div>
+<div class="card"><div class="ctit">Status por Escola</div><canvas id="ambChart" height="220"></canvas></div>
+</div>
+</div>
+<!-- PROJETOS -->
+<div class="page" id="page-projetos">
+<div class="shdr"><h3>Projetos Pedagógicos</h3><button class="btn bp bsm" onclick="openMod('proj')">+ Novo Projeto</button></div>
+<div class="pgrid" id="projGrid"></div>
+</div>
+<!-- CALENDÁRIO -->
+<div class="page" id="page-calendario">
+<div class="g2">
+<div class="card">
+<div class="shdr"><h3 id="calTit">Calendário</h3></div>
+<div class="cgrid" id="calGrid"></div>
+</div>
+<div class="card">
+<div class="ctit">Adicionar Evento</div>
+<div class="fg"><label class="fl">Tipo</label><select class="fs" id="ev_t"><option>Avaliação Externa</option><option>Reunião</option><option>Formação Continuada</option><option>Conselho de Classe</option><option>Visita da Superintendência</option><option>Outro</option></select></div>
+<div class="fg"><label class="fl">Título</label><input class="fi" id="ev_ti" placeholder="Ex: SPAECE Diagnóstica"></div>
+<div class="fg2">
+<div class="fg"><label class="fl">Data</label><input class="fi" type="date" id="ev_d"></div>
+<div class="fg"><label class="fl">Horário</label><input class="fi" type="time" id="ev_h" value="08:00"></div>
+</div>
+<div class="fg"><label class="fl">Escola(s)</label><select class="fs" id="ev_e"><option value="todas">Todas as Escolas</option></select></div>
+<button class="btn bp bfull" onclick="addEvent()">📅 Adicionar Evento</button>
+</div>
+</div>
+<div class="card"><div class="shdr"><h3>Agenda</h3></div><div id="agBox"></div></div>
+</div>
+</div>
+</main>
+</div>
 <!-- MODAIS -->
 <div class="mov" id="mod-reg">
-  <div class="modal"><div class="mhdr"><h3>📝 Novo Registro Rápido</h3><button class="mx" onclick="closeMod('reg')">×</button></div>
-    <div class="fg"><label class="fl">Escola</label><select class="fs" id="reg_e"></select></div>
-    <div class="fg"><label class="fl">Tipo</label><select class="fs" id="reg_t"><option>Frequência</option><option>Avaliação</option><option>Visita</option><option>Ocorrência</option></select></div>
-    <div class="fg"><label class="fl">Observação</label><textarea class="ft" id="reg_o" placeholder="Descreva o registro..."></textarea></div>
-    <div class="brow">
-      <button class="btn bo" style="flex:1" onclick="closeMod('reg')">Cancelar</button>
-      <button class="btn bp" style="flex:1" onclick="saveReg()">Salvar</button>
-    </div>
-  </div>
+<div class="modal"><div class="mhdr"><h3>📝 Novo Registro Rápido</h3><button class="mx" onclick="closeMod('reg')">×</button></div>
+<div class="fg"><label class="fl">Escola</label><select class="fs" id="reg_e"></select></div>
+<div class="fg"><label class="fl">Tipo</label><select class="fs" id="reg_t"><option>Frequência</option><option>Avaliação</option><option>Visita</option><option>Ocorrência</option></select></div>
+<div class="fg"><label class="fl">Observação</label><textarea class="ft" id="reg_o" placeholder="Descreva o registro..."></textarea></div>
+<div class="brow">
+<button class="btn bo" style="flex:1" onclick="closeMod('reg')">Cancelar</button>
+<button class="btn bp" style="flex:1" onclick="saveReg()">Salvar</button>
 </div>
-
+</div>
+</div>
 <div class="mov" id="mod-proj">
-  <div class="modal"><div class="mhdr"><h3>🚀 Novo Projeto</h3><button class="mx" onclick="closeMod('proj')">×</button></div>
-    <div class="fg"><label class="fl">Escola</label><select class="fs" id="p_e"></select></div>
-    <div class="fg"><label class="fl">Nome do Projeto</label><input class="fi" id="p_n" placeholder="Ex: Leitura em Rede"></div>
-    <div class="fg2">
-      <div class="fg"><label class="fl">Responsável</label><input class="fi" id="p_r" placeholder="Nome"></div>
-      <div class="fg"><label class="fl">Público-alvo</label><input class="fi" id="p_a" placeholder="Ex: 1º ao 3º ano"></div>
-    </div>
-    <div class="fg"><label class="fl">Período</label><input class="fi" id="p_p" placeholder="Mar–Nov 2025"></div>
-    <div class="fg"><label class="fl">Impacto Esperado</label><textarea class="ft" id="p_i" placeholder="Resultados esperados..."></textarea></div>
-    <div class="brow">
-      <button class="btn bo" style="flex:1" onclick="closeMod('proj')">Cancelar</button>
-      <button class="btn bp" style="flex:1" onclick="saveProj()">💾 Salvar</button>
-    </div>
-  </div>
+<div class="modal"><div class="mhdr"><h3>🚀 Novo Projeto</h3><button class="mx" onclick="closeMod('proj')">×</button></div>
+<div class="fg"><label class="fl">Escola</label><select class="fs" id="p_e"></select></div>
+<div class="fg"><label class="fl">Nome do Projeto</label><input class="fi" id="p_n" placeholder="Ex: Leitura em Rede"></div>
+<div class="fg2">
+<div class="fg"><label class="fl">Responsável</label><input class="fi" id="p_r" placeholder="Nome"></div>
+<div class="fg"><label class="fl">Público-alvo</label><input class="fi" id="p_a" placeholder="Ex: 1º ao 3º ano"></div>
 </div>
-
+<div class="fg"><label class="fl">Período</label><input class="fi" id="p_p" placeholder="Mar–Nov 2025"></div>
+<div class="fg"><label class="fl">Impacto Esperado</label><textarea class="ft" id="p_i" placeholder="Resultados esperados..."></textarea></div>
+<div class="brow">
+<button class="btn bo" style="flex:1" onclick="closeMod('proj')">Cancelar</button>
+<button class="btn bp" style="flex:1" onclick="saveProj()">💾 Salvar</button>
+</div>
+</div>
+</div>
 <div class="mov" id="mod-escola">
-  <div class="modal"><div class="mhdr"><h3>🏫 Editar Escola</h3><button class="mx" onclick="closeMod('escola')">×</button></div>
-    <div class="fg"><label class="fl">Escola</label><select class="fs" id="ed_e" onchange="loadEdit()"></select></div>
-    <div class="fg"><label class="fl">Código INEP</label><input class="fi" id="ed_i" placeholder="23XXXXXXXXX"></div>
-    <div class="fg2">
-      <div class="fg"><label class="fl">Diretor(a)</label><input class="fi" id="ed_d" placeholder="Nome completo"></div>
-      <div class="fg"><label class="fl">Coordenador(a)</label><input class="fi" id="ed_c" placeholder="Nome completo"></div>
-    </div>
-    <div class="fg2">
-      <div class="fg"><label class="fl">Nº de Alunos</label><input class="fi" type="number" id="ed_a" placeholder="450"></div>
-      <div class="fg"><label class="fl">Frequência (%)</label><input class="fi" type="number" id="ed_f" min="0" max="100" step="0.1" placeholder="87.5"></div>
-    </div>
-    <div class="fg"><label class="fl">E-mail do Gestor</label><input class="fi" type="email" id="ed_em"></div>
-    <div class="brow">
-      <button class="btn bo" style="flex:1" onclick="closeMod('escola')">Cancelar</button>
-      <button class="btn bp" style="flex:1" onclick="saveEscola()">💾 Salvar</button>
-    </div>
-  </div>
+<div class="modal"><div class="mhdr"><h3>🏫 Editar Escola</h3><button class="mx" onclick="closeMod('escola')">×</button></div>
+<div class="fg"><label class="fl">Escola</label><select class="fs" id="ed_e" onchange="loadEdit()"></select></div>
+<div class="fg"><label class="fl">Código INEP</label><input class="fi" id="ed_i" placeholder="23XXXXXXXXX"></div>
+<div class="fg2">
+<div class="fg"><label class="fl">Diretor(a)</label><input class="fi" id="ed_d" placeholder="Nome completo"></div>
+<div class="fg"><label class="fl">Coordenador(a)</label><input class="fi" id="ed_c" placeholder="Nome completo"></div>
 </div>
-
-
-
-
+<div class="fg2">
+<div class="fg"><label class="fl">Nº de Alunos</label><input class="fi" type="number" id="ed_a" placeholder="450"></div>
+<div class="fg"><label class="fl">Frequência (%)</label><input class="fi" type="number" id="ed_f" min="0" max="100" step="0.1" placeholder="87.5"></div>
+</div>
+<div class="fg"><label class="fl">E-mail do Gestor</label><input class="fi" type="email" id="ed_em"></div>
+<div class="brow">
+<button class="btn bo" style="flex:1" onclick="closeMod('escola')">Cancelar</button>
+<button class="btn bp" style="flex:1" onclick="saveEscola()">💾 Salvar</button>
+</div>
+</div>
+</div>
 <div class="mov" id="mod-sinc">
-  <div class="modal">
-    <div class="mhdr"><h3>🔗 Código de Sincronização</h3><button class="mx" onclick="closeMod('sinc')">×</button></div>
-    <div class="hbox">Use este código para sincronizar entre tablet e computador. Cole o código no outro dispositivo para acessar os mesmos dados.</div>
-    <div class="fg">
-      <label class="fl">Seu código de sync</label>
-      <div style="display:flex;gap:8px;align-items:center">
-        <input class="fi" id="sinc_code" readonly placeholder="Salve na nuvem primeiro para gerar o código">
-        <button class="btn bp bsm" onclick="copiarCodigo()">Copiar</button>
-      </div>
-    </div>
-    <div style="height:1px;background:var(--bdr);margin:14px 0"></div>
-    <div class="fg">
-      <label class="fl">Inserir código de outro dispositivo</label>
-      <div style="display:flex;gap:8px;align-items:center">
-        <input class="fi" id="sinc_input" placeholder="Cole o código aqui">
-        <button class="btn bs bsm" onclick="aplicarCodigo()">Aplicar</button>
-      </div>
-    </div>
-  </div>
+<div class="modal">
+<div class="mhdr"><h3>🔗 Código de Sincronização</h3><button class="mx" onclick="closeMod('sinc')">×</button></div>
+<div class="hbox">Use este código para sincronizar entre tablet e computador. Cole o código no outro dispositivo para acessar os mesmos dados.</div>
+<div class="fg">
+<label class="fl">Seu código de sync</label>
+<div style="display:flex;gap:8px;align-items:center">
+<input class="fi" id="sinc_code" readonly placeholder="Salve na nuvem primeiro para gerar o código">
+<button class="btn bp bsm" onclick="copiarCodigo()">Copiar</button>
 </div>
-
+</div>
+<div style="height:1px;background:var(--bdr);margin:14px 0"></div>
+<div class="fg">
+<label class="fl">Inserir código de outro dispositivo</label>
+<div style="display:flex;gap:8px;align-items:center">
+<input class="fi" id="sinc_input" placeholder="Cole o código aqui">
+<button class="btn bs bsm" onclick="aplicarCodigo()">Aplicar</button>
+</div>
+</div>
+</div>
+</div>
 <input type="file" id="importFile" accept=".json" style="display:none" onchange="doImport(event)">
 <div class="toast" id="toast"></div>
 <div class="instbanner" id="instbanner">
-  <div>
-    <p>📱 Instale o <span>SEFOR 3</span> no seu celular!</p>
-    <p style="font-size:11px;opacity:.7;margin-top:2px">Funciona offline, sem precisar de loja</p>
-  </div>
-  <div style="display:flex;gap:6px;align-items:center">
-    <button class="ibtn" id="instBtn">Instalar</button>
-    <button class="iclose" onclick="document.getElementById('instbanner').classList.remove('show')">×</button>
-  </div>
+<div>
+<p>📱 Instale o <span>SEFOR 3</span> no seu celular!</p>
+<p style="font-size:11px;opacity:.7;margin-top:2px">Funciona offline, sem precisar de loja</p>
 </div>
-
+<div style="display:flex;gap:6px;align-items:center">
+<button class="ibtn" id="instBtn">Instalar</button>
+<button class="iclose" onclick="document.getElementById('instbanner').classList.remove('show')">×</button>
+</div>
+</div>
 <script>
 // ─── DADOS PADRÃO ─────────────────────────────────────────
 const SCHOOLS0=[
-  {id:'esc1',name:'EEMTI Estado do Amazonas',inep:'',director:'',coordinator:'',students:0,segment:'EM Integral',freq:0,email:''},
-  {id:'esc2',name:'EEMTI Anísio Teixeira',inep:'',director:'',coordinator:'',students:0,segment:'EM Integral',freq:0,email:''},
-  {id:'esc3',name:'EEMTI Sen. Osires Pontes',inep:'',director:'',coordinator:'',students:0,segment:'EM Integral',freq:0,email:''},
-  {id:'esc4',name:'EEM Figueiredo Correia',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
-  {id:'esc5',name:'EEM José Leopoldino',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
-  {id:'esc6',name:'EEM Profa Diva Cabral',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
-  {id:'esc7',name:'EEM São Francisco Canindezinho',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
+{id:'esc1',name:'EEMTI Estado do Amazonas',inep:'',director:'',coordinator:'',students:0,segment:'EM Integral',freq:0,email:''},
+{id:'esc2',name:'EEMTI Anísio Teixeira',inep:'',director:'',coordinator:'',students:0,segment:'EM Integral',freq:0,email:''},
+{id:'esc3',name:'EEMTI Sen. Osires Pontes',inep:'',director:'',coordinator:'',students:0,segment:'EM Integral',freq:0,email:''},
+{id:'esc4',name:'EEM Figueiredo Correia',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
+{id:'esc5',name:'EEM José Leopoldino',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
+{id:'esc6',name:'EEM Profa Diva Cabral',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
+{id:'esc7',name:'EEM São Francisco Canindezinho',inep:'',director:'',coordinator:'',students:0,segment:'Ensino Médio',freq:0,email:''},
 ];
-
 // ─── STORAGE ──────────────────────────────────────────────
 const S={
-  get:(k)=>{try{return JSON.parse(localStorage.getItem(k));}catch{return null;}},
-  set:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
-  del:(k)=>localStorage.removeItem(k),
+get:(k)=>{try{return JSON.parse(localStorage.getItem(k));}catch{return null;}},
+set:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
+del:(k)=>localStorage.removeItem(k),
 };
-
 // ─── STATE ────────────────────────────────────────────────
 let user=null;
 let schools=[],freqRec=[],avalRec=[],projList=[],evtList=[];
 let charts={};
-
+let JB_BIN_ID = localStorage.getItem('sefor_bin_id') || null;
 // ─── BOOT ─────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded',()=>{
-  // Seta mês atual
-  const mi=document.getElementById('f_m');
-  const n=new Date();
-  if(mi)mi.value=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0');
-  // Seta data atual
-  const di=document.getElementById('ev_d');
-  if(di)di.value=n.toISOString().split('T')[0];
-
-  const u=S.get('sefor_user');
-  if(u){user=u;showApp();}
-  else{showLogin();}
+criarAdminPadrao();
+const mi=document.getElementById('f_m');
+const n=new Date();
+if(mi)mi.value=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0');
+const di=document.getElementById('ev_d');
+if(di)di.value=n.toISOString().split('T')[0];
+const u=S.get('sefor_user');
+if(u){user=u;showApp();}
+else{showLogin();}
 });
-
+// ─── ADMIN PADRÃO ─────────────────────────────────────────
+function criarAdminPadrao(){
+const users=S.get('sefor_users')||[];
+const adminExiste=users.find(u=>u.email==='admin@seduc.ce.gov.br');
+if(!adminExiste){
+users.push({
+id:'admin_001',
+name:'Administrador SEFOR',
+email:'admin@seduc.ce.gov.br',
+pw:btoa('admin123'),
+role:'superintendente'
+});
+S.set('sefor_users',users);
+}
+}
 // ─── LOGIN / CONTA ────────────────────────────────────────
 function ltab(t){
-  const isL=t==='login';
-  document.getElementById('p1').style.display=isL?'block':'none';
-  document.getElementById('p2').style.display=isL?'none':'block';
-  document.getElementById('t1').classList.toggle('on',isL);
-  document.getElementById('t2').classList.toggle('on',!isL);
+const isL=t==='login';
+document.getElementById('p1').style.display=isL?'block':'none';
+document.getElementById('p2').style.display=isL?'none':'block';
+document.getElementById('t1').classList.toggle('on',isL);
+document.getElementById('t2').classList.toggle('on',!isL);
 }
 window.ltab=ltab;
-
 window.criarConta=function(){
-  const nm=V('cnome'),em=V('cemail'),pw=V('csenha');
-  if(!nm||!em||!pw){showErr('cerr','Preencha todos os campos.');return;}
-  if(pw.length<6){showErr('cerr','Senha precisa ter mínimo 6 caracteres.');return;}
-  const users=S.get('sefor_users')||[];
-  if(users.find(u=>u.email===em)){showErr('cerr','Este e-mail já tem conta. Vá para "Entrar".');return;}
-  const u={id:'u_'+Date.now(),name:nm,email:em,pw:btoa(pw),role:'superintendente'};
-  users.push(u);
-  S.set('sefor_users',users);
-  user={id:u.id,name:nm,email:em,role:'superintendente'};
-  S.set('sefor_user',user);
-  showApp();
-  toast('✅ Conta criada! Bem-vindo(a), '+nm+'!');
+const nm=V('cnome'),em=V('cemail'),pw=V('csenha');
+if(!nm||!em||!pw){showErr('cerr','Preencha todos os campos.');return;}
+if(pw.length<6){showErr('cerr','Senha precisa ter mínimo 6 caracteres.');return;}
+const users=S.get('sefor_users')||[];
+if(users.find(u=>u.email===em)){showErr('cerr','Este e-mail já tem conta. Vá para "Entrar".');return;}
+const u={id:'u_'+Date.now(),name:nm,email:em,pw:btoa(pw),role:'superintendente'};
+users.push(u);
+S.set('sefor_users',users);
+user={id:u.id,name:nm,email:em,role:'superintendente'};
+S.set('sefor_user',user);
+showApp();
+toast('✅ Conta criada! Bem-vindo(a), '+nm+'!');
 };
-
 window.doLogin=function(){
-  const em=V('lemail'),pw=V('lpass');
-  if(!em||!pw){showErr('lerr','Preencha e-mail e senha.');return;}
-  const users=S.get('sefor_users')||[];
-  const u=users.find(x=>x.email===em&&x.pw===btoa(pw));
-  if(!u){showErr('lerr','E-mail ou senha incorretos.');return;}
-  user={id:u.id,name:u.name,email:u.email,role:u.role};
-  S.set('sefor_user',user);
-  showApp();
+const em=V('lemail'),pw=V('lpass');
+if(!em||!pw){showErr('lerr','Preencha e-mail e senha.');return;}
+const users=S.get('sefor_users')||[];
+const u=users.find(x=>x.email===em&&x.pw===btoa(pw));
+if(!u){showErr('lerr','E-mail ou senha incorretos.');return;}
+user={id:u.id,name:u.name,email:u.email,role:u.role};
+S.set('sefor_user',user);
+showApp();
 };
-
 window.doLogout=function(){
-  S.del('sefor_user');user=null;
-  document.getElementById('appScreen').classList.remove('on');
-  document.getElementById('loginScreen').style.display='flex';
+S.del('sefor_user');user=null;
+document.getElementById('appScreen').classList.remove('on');
+document.getElementById('loginScreen').style.display='flex';
 };
-
 function showLogin(){
-  document.getElementById('loginScreen').style.display='flex';
-  document.getElementById('appScreen').classList.remove('on');
+document.getElementById('loginScreen').style.display='flex';
+document.getElementById('appScreen').classList.remove('on');
 }
 function showApp(){
-  loadData();
-  document.getElementById('loginScreen').style.display='none';
-  document.getElementById('appScreen').classList.add('on');
-  document.getElementById('uname').textContent=user.name;
-  document.getElementById('urole').textContent=user.role==='superintendente'?'Superintendente':'Gestor';
-  document.getElementById('uav').textContent=user.name[0].toUpperCase();
-  renderAll();
+loadData();
+document.getElementById('loginScreen').style.display='none';
+document.getElementById('appScreen').classList.add('on');
+document.getElementById('uname').textContent=user.name;
+document.getElementById('urole').textContent=user.role==='superintendente'?'Superintendente':'Gestor';
+document.getElementById('uav').textContent=user.name[0].toUpperCase();
+renderAll();
 }
-
 // ─── DATA ─────────────────────────────────────────────────
 function loadData(){
-  schools=S.get('sefor_schools')||JSON.parse(JSON.stringify(SCHOOLS0));
-  freqRec=S.get('sefor_freq')||[];
-  avalRec=S.get('sefor_aval')||[];
-  projList=S.get('sefor_proj')||[];
-  evtList=S.get('sefor_evt')||[];
+schools=S.get('sefor_schools')||JSON.parse(JSON.stringify(SCHOOLS0));
+freqRec=S.get('sefor_freq')||[];
+avalRec=S.get('sefor_aval')||[];
+projList=S.get('sefor_proj')||[];
+evtList=S.get('sefor_evt')||[];
 }
 function saveData(){
-  S.set('sefor_schools',schools);
-  S.set('sefor_freq',freqRec);
-  S.set('sefor_aval',avalRec);
-  S.set('sefor_proj',projList);
-  S.set('sefor_evt',evtList);
+S.set('sefor_schools',schools);
+S.set('sefor_freq',freqRec);
+S.set('sefor_aval',avalRec);
+S.set('sefor_proj',projList);
+S.set('sefor_evt',evtList);
 }
-
 // ─── ACTIONS ──────────────────────────────────────────────
 window.saveFreq=function(){
-  const eid=V2('f_e'),turma=V('f_t'),perc=parseFloat(V('f_p')),mes=V('f_m'),obs=V('f_o');
-  const escola=schools.find(s=>s.id===eid);
-  if(!escola||!turma||isNaN(perc)){toast('⚠️ Preencha escola, turma e frequência.');return;}
-  freqRec.unshift({id:'f'+Date.now(),escolaId:eid,escolaNome:escola.name,turma,perc,mes,obs,data:new Date().toLocaleDateString('pt-BR')});
-  escola.freq=perc;
-  saveData();renderDash();renderSchools();renderFreqHist();updateCharts();
-  document.getElementById('f_t').value='';document.getElementById('f_p').value='';document.getElementById('f_o').value='';
-  toast('✅ Frequência salva!');
+const eid=V2('f_e'),turma=V('f_t'),perc=parseFloat(V('f_p')),mes=V('f_m'),obs=V('f_o');
+const escola=schools.find(s=>s.id===eid);
+if(!escola||!turma||isNaN(perc)){toast('⚠️ Preencha escola, turma e frequência.');return;}
+freqRec.unshift({id:'f'+Date.now(),escolaId:eid,escolaNome:escola.name,turma,perc,mes,obs,data:new Date().toLocaleDateString('pt-BR')});
+escola.freq=perc;
+saveData();renderDash();renderSchools();renderFreqHist();updateCharts();
+document.getElementById('f_t').value='';document.getElementById('f_p').value='';document.getElementById('f_o').value='';
+toast('✅ Frequência salva!');
 };
-
 window.saveAval=function(){
-  const eid=V2('a_e'),bim=V2('a_b'),disc=V('a_d'),media=parseFloat(V('a_m')),analise=V('a_a');
-  const escola=schools.find(s=>s.id===eid);
-  if(!escola||!disc||isNaN(media)){toast('⚠️ Preencha escola, disciplina e média.');return;}
-  avalRec.unshift({id:'a'+Date.now(),escolaId:eid,escolaNome:escola.name,bim,disc,media,analise,data:new Date().toLocaleDateString('pt-BR')});
-  saveData();renderDash();renderAvalHist();
-  document.getElementById('a_d').value='';document.getElementById('a_m').value='';document.getElementById('a_a').value='';
-  toast('✅ Avaliação salva!');
+const eid=V2('a_e'),bim=V2('a_b'),disc=V('a_d'),media=parseFloat(V('a_m')),analise=V('a_a');
+const escola=schools.find(s=>s.id===eid);
+if(!escola||!disc||isNaN(media)){toast('⚠️ Preencha escola, disciplina e média.');return;}
+avalRec.unshift({id:'a'+Date.now(),escolaId:eid,escolaNome:escola.name,bim,disc,media,analise,data:new Date().toLocaleDateString('pt-BR')});
+saveData();renderDash();renderAvalHist();
+document.getElementById('a_d').value='';document.getElementById('a_m').value='';document.getElementById('a_a').value='';
+toast('✅ Avaliação salva!');
 };
-
 window.saveProj=function(){
-  const eid=V2('p_e'),nome=V('p_n'),resp=V('p_r'),alvo=V('p_a'),periodo=V('p_p'),impacto=V('p_i');
-  const escola=schools.find(s=>s.id===eid);
-  if(!escola||!nome){toast('⚠️ Preencha escola e nome.');return;}
-  projList.unshift({id:'p'+Date.now(),escolaId:eid,escolaNome:escola.name,nome,resp,alvo,periodo,impacto,data:new Date().toLocaleDateString('pt-BR')});
-  saveData();renderProjects();closeMod('proj');
-  document.getElementById('p_n').value='';document.getElementById('p_r').value='';document.getElementById('p_a').value='';document.getElementById('p_p').value='';document.getElementById('p_i').value='';
-  toast('✅ Projeto salvo!');
+const eid=V2('p_e'),nome=V('p_n'),resp=V('p_r'),alvo=V('p_a'),periodo=V('p_p'),impacto=V('p_i');
+const escola=schools.find(s=>s.id===eid);
+if(!escola||!nome){toast('⚠️ Preencha escola e nome.');return;}
+projList.unshift({id:'p'+Date.now(),escolaId:eid,escolaNome:escola.name,nome,resp,alvo,periodo,impacto,data:new Date().toLocaleDateString('pt-BR')});
+saveData();renderProjects();closeMod('proj');
+document.getElementById('p_n').value='';document.getElementById('p_r').value='';document.getElementById('p_a').value='';document.getElementById('p_p').value='';document.getElementById('p_i').value='';
+toast('✅ Projeto salvo!');
 };
-
 window.saveEscola=function(){
-  const id=V2('ed_e');
-  const s=schools.find(x=>x.id===id);if(!s)return;
-  s.inep=V('ed_i');s.director=V('ed_d');s.coordinator=V('ed_c');
-  s.students=parseInt(V('ed_a'))||0;s.freq=parseFloat(V('ed_f'))||s.freq;s.email=V('ed_em');
-  saveData();renderSchools();renderDash();updateCharts();closeMod('escola');
-  toast('✅ Escola atualizada!');
+const id=V2('ed_e');
+const s=schools.find(x=>x.id===id);if(!s)return;
+s.inep=V('ed_i');s.director=V('ed_d');s.coordinator=V('ed_c');
+s.students=parseInt(V('ed_a'))||0;s.freq=parseFloat(V('ed_f'))||s.freq;s.email=V('ed_em');
+saveData();renderSchools();renderDash();updateCharts();closeMod('escola');
+toast('✅ Escola atualizada!');
 };
-
 window.saveReg=function(){
-  const obs=V('reg_o');if(!obs){toast('⚠️ Preencha a observação.');return;}
-  toast('✅ Registro salvo!');closeMod('reg');
-  document.getElementById('reg_o').value='';
+const obs=V('reg_o');if(!obs){toast('⚠️ Preencha a observação.');return;}
+toast('✅ Registro salvo!');closeMod('reg');
+document.getElementById('reg_o').value='';
 };
-
 window.addEvent=function(){
-  const ti=V('ev_ti'),d=V('ev_d'),h=V('ev_h'),t=V2('ev_t'),eid=V2('ev_e');
-  if(!ti||!d){toast('⚠️ Preencha título e data.');return;}
-  const escola=eid==='todas'?'Todas as Escolas':schools.find(s=>s.id===eid)?.name||eid;
-  evtList.push({id:'e'+Date.now(),title:ti,date:d,time:h,type:t,school:escola});
-  evtList.sort((a,b)=>a.date.localeCompare(b.date));
-  saveData();renderCal();renderAg();
-  document.getElementById('ev_ti').value='';
-  toast('✅ Evento adicionado!');
+const ti=V('ev_ti'),d=V('ev_d'),h=V('ev_h'),t=V2('ev_t'),eid=V2('ev_e');
+if(!ti||!d){toast('⚠️ Preencha título e data.');return;}
+const escola=eid==='todas'?'Todas as Escolas':schools.find(s=>s.id===eid)?.name||eid;
+evtList.push({id:'e'+Date.now(),title:ti,date:d,time:h,type:t,school:escola});
+evtList.sort((a,b)=>a.date.localeCompare(b.date));
+saveData();renderCal();renderAg();
+document.getElementById('ev_ti').value='';
+toast('✅ Evento adicionado!');
 };
-
 window.delFreq=function(id){freqRec=freqRec.filter(r=>r.id!==id);saveData();renderFreqHist();toast('🗑️ Removido.');};
 window.delAval=function(id){avalRec=avalRec.filter(r=>r.id!==id);saveData();renderAvalHist();toast('🗑️ Removido.');};
-
 window.exportarDados=function(){
-  const data={schools,freqRec,avalRec,projList,evtList,exportedAt:new Date().toISOString()};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='sefor3-dados-'+new Date().toISOString().split('T')[0]+'.json';
-  a.click();toast('📥 Dados exportados!');
+const data={schools,freqRec,avalRec,projList,evtList,exportedAt:new Date().toISOString()};
+const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+a.download='sefor3-dados-'+new Date().toISOString().split('T')[0]+'.json';
+a.click();toast('📥 Dados exportados!');
 };
 window.importarDados=function(){document.getElementById('importFile').click();};
 window.doImport=function(e){
-  const file=e.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=function(ev){
-    try{
-      const data=JSON.parse(ev.target.result);
-      if(data.schools)schools=data.schools;
-      if(data.freqRec)freqRec=data.freqRec;
-      if(data.avalRec)avalRec=data.avalRec;
-      if(data.projList)projList=data.projList;
-      if(data.evtList)evtList=data.evtList;
-      saveData();renderAll();toast('✅ Dados importados!');
-    }catch{toast('❌ Arquivo inválido.');}
-  };
-  reader.readAsText(file);
+const file=e.target.files[0];if(!file)return;
+const reader=new FileReader();
+reader.onload=function(ev){
+try{
+const data=JSON.parse(ev.target.result);
+if(data.schools)schools=data.schools;
+if(data.freqRec)freqRec=data.freqRec;
+if(data.avalRec)avalRec=data.avalRec;
+if(data.projList)projList=data.projList;
+if(data.evtList)evtList=data.evtList;
+saveData();renderAll();toast('✅ Dados importados!');
+}catch{toast('❌ Arquivo inválido.');}
 };
-
+reader.readAsText(file);
+};
 // ─── RENDER ───────────────────────────────────────────────
 function renderAll(){
-  fillSelects();renderDash();renderSchools();renderFreqHist();renderAvalHist();renderProjects();renderChecklist();renderCal();renderAg();initCharts();
+fillSelects();renderDash();renderSchools();renderFreqHist();renderAvalHist();renderProjects();renderChecklist();renderCal();renderAg();initCharts();
 }
-
 function renderDash(){
-  const avg=schools.filter(s=>s.freq>0).length?Math.round(schools.filter(s=>s.freq>0).reduce((s,e)=>s+(e.freq||0),0)/schools.filter(s=>s.freq>0).length):0;
-  const maval=avalRec.length?(avalRec.reduce((s,r)=>s+(r.media||0),0)/avalRec.length).toFixed(1):'—';
-  const alerts=schools.filter(s=>s.freq>0&&s.freq<75).length;
-  document.getElementById('sv_freq').textContent=avg?avg+'%':'—';
-  document.getElementById('sv_aval').textContent=maval;
-  document.getElementById('sv_alert').textContent=alerts;
-  const sorted=[...schools].sort((a,b)=>(b.freq||0)-(a.freq||0));
-  const rb=document.getElementById('rankBox');
-  if(rb)rb.innerHTML=sorted.map((s,i)=>{
-    const cl=i===0?'g':i===1?'s':i===2?'b':'n';
-    const fc=s.freq>=85?'var(--ok)':s.freq>=75?'var(--warn)':'var(--err)';
-    return`<div class="ri"><div class="rn ${cl}">${i+1}</div><div class="ri-info"><p>${s.name}</p>${s.freq?`<div class="fbar"><div class="ffil" style="width:${s.freq}%;background:${fc}"></div></div>`:'<span style="font-size:11px;color:var(--muted)">Sem dados</span>'}</div><strong style="font-size:13px;color:${fc}">${s.freq||0}%</strong></div>`;
-  }).join('');
+const avg=schools.filter(s=>s.freq>0).length?Math.round(schools.filter(s=>s.freq>0).reduce((s,e)=>s+(e.freq||0),0)/schools.filter(s=>s.freq>0).length):0;
+const maval=avalRec.length?(avalRec.reduce((s,r)=>s+(r.media||0),0)/avalRec.length).toFixed(1):'—';
+const alerts=schools.filter(s=>s.freq>0&&s.freq<75).length;
+document.getElementById('sv_freq').textContent=avg?avg+'%':'—';
+document.getElementById('sv_aval').textContent=maval;
+document.getElementById('sv_alert').textContent=alerts;
+const sorted=[...schools].sort((a,b)=>(b.freq||0)-(a.freq||0));
+const rb=document.getElementById('rankBox');
+if(rb)rb.innerHTML=sorted.map((s,i)=>{
+const cl=i===0?'g':i===1?'s':i===2?'b':'n';
+const fc=s.freq>=85?'var(--ok)':s.freq>=75?'var(--warn)':'var(--err)';
+return`<div class="ri"><div class="rn ${cl}">${i+1}</div><div class="ri-info"><p>${s.name}</p>${s.freq?`<div class="fbar"><div class="ffil" style="width:${s.freq}%;background:${fc}"></div></div>`:'<span style="font-size:11px;color:var(--muted)">Sem dados</span>'}</div><strong style="font-size:13px;color:${fc}">${s.freq||0}%</strong></div>`;
+}).join('');
 }
-
 function renderSchools(){
-  const tb=document.getElementById('escolaTb');if(!tb)return;
-  tb.innerHTML=schools.map(s=>{
-    const fc=s.freq>=85?'var(--ok)':s.freq>=75?'var(--warn)':'var(--err)';
-    return`<tr><td style="font-weight:600;font-size:12.5px">${s.name}</td><td><span class="badge2 bb2">${s.segment||'—'}</span></td><td style="font-size:12px">${s.director||'—'}</td><td style="font-size:12px">${s.students||0}</td><td><strong style="color:${s.freq?fc:'var(--muted)'}">${s.freq||0}%</strong></td></tr>`;
-  }).join('');
+const tb=document.getElementById('escolaTb');if(!tb)return;
+tb.innerHTML=schools.map(s=>{
+const fc=s.freq>=85?'var(--ok)':s.freq>=75?'var(--warn)':'var(--err)';
+return`<tr><td style="font-weight:600;font-size:12.5px">${s.name}</td><td><span class="badge2 bb2">${s.segment||'—'}</span></td><td style="font-size:12px">${s.director||'—'}</td><td style="font-size:12px">${s.students||0}</td><td><strong style="color:${s.freq?fc:'var(--muted)'}">${s.freq||0}%</strong></td></tr>`;
+}).join('');
 }
-
 function fillSelects(){
-  const opts=schools.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
-  ['f_e','a_e','p_e','reg_e','ed_e','ck_e'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=opts;});
-  const ev=document.getElementById('ev_e');
-  if(ev)ev.innerHTML='<option value="todas">Todas as Escolas</option>'+opts;
-  loadEdit();
+const opts=schools.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+['f_e','a_e','p_e','reg_e','ed_e','ck_e'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=opts;});
+const ev=document.getElementById('ev_e');
+if(ev)ev.innerHTML='<option value="todas">Todas as Escolas</option>'+opts;
+loadEdit();
 }
-
 window.loadEdit=function(){
-  const id=V2('ed_e');const s=schools.find(x=>x.id===id);if(!s)return;
-  ['ed_i','inep'],['ed_d','director'],['ed_c','coordinator'],['ed_a','students'],['ed_f','freq'],['ed_em','email'];
-  const m={ed_i:'inep',ed_d:'director',ed_c:'coordinator',ed_a:'students',ed_f:'freq',ed_em:'email'};
-  Object.entries(m).forEach(([k,v])=>{const el=document.getElementById(k);if(el)el.value=s[v]||'';});
+const id=V2('ed_e');const s=schools.find(x=>x.id===id);if(!s)return;
+const m={ed_i:'inep',ed_d:'director',ed_c:'coordinator',ed_a:'students',ed_f:'freq',ed_em:'email'};
+Object.entries(m).forEach(([k,v])=>{const el=document.getElementById(k);if(el)el.value=s[v]||'';});
 };
-
 function renderFreqHist(){
-  const el=document.getElementById('fHist');if(!el)return;
-  el.innerHTML=freqRec.length===0?`<tr><td colspan="6" style="color:var(--muted);padding:14px">Nenhum registro ainda.</td></tr>`:
-    freqRec.slice(0,20).map(r=>`<tr><td style="font-size:11.5px">${r.data||'—'}</td><td style="font-size:11.5px">${r.escolaNome||'—'}</td><td style="font-size:11.5px">${r.turma||'—'}</td><td style="font-size:11.5px">${r.mes||'—'}</td><td><strong>${r.perc||0}%</strong></td><td><button class="btn bsm" style="background:#FEF2F2;color:#991B1B;border:none;padding:3px 8px;font-size:11px" onclick="delFreq('${r.id}')">×</button></td></tr>`).join('');
+const el=document.getElementById('fHist');if(!el)return;
+el.innerHTML=freqRec.length===0?`<tr><td colspan="6" style="color:var(--muted);padding:14px">Nenhum registro ainda.</td></tr>`:
+freqRec.slice(0,20).map(r=>`<tr><td style="font-size:11.5px">${r.data||'—'}</td><td style="font-size:11.5px">${r.escolaNome||'—'}</td><td style="font-size:11.5px">${r.turma||'—'}</td><td style="font-size:11.5px">${r.mes||'—'}</td><td><strong>${r.perc||0}%</strong></td><td><button class="btn bsm" style="background:#FEF2F2;color:#991B1B;border:none;padding:3px 8px;font-size:11px" onclick="delFreq('${r.id}')">×</button></td></tr>`).join('');
 }
-
 function renderAvalHist(){
-  const el=document.getElementById('aHist');if(!el)return;
-  el.innerHTML=avalRec.length===0?`<tr><td colspan="6" style="color:var(--muted);padding:14px">Nenhum lançamento ainda.</td></tr>`:
-    avalRec.slice(0,20).map(r=>`<tr><td style="font-size:11.5px">${r.data||'—'}</td><td style="font-size:11.5px">${r.escolaNome||'—'}</td><td style="font-size:11.5px">${r.bim||'—'}</td><td style="font-size:11.5px">${r.disc||'—'}</td><td><strong>${r.media||0}</strong></td><td><button class="btn bsm" style="background:#FEF2F2;color:#991B1B;border:none;padding:3px 8px;font-size:11px" onclick="delAval('${r.id}')">×</button></td></tr>`).join('');
+const el=document.getElementById('aHist');if(!el)return;
+el.innerHTML=avalRec.length===0?`<tr><td colspan="6" style="color:var(--muted);padding:14px">Nenhum lançamento ainda.</td></tr>`:
+avalRec.slice(0,20).map(r=>`<tr><td style="font-size:11.5px">${r.data||'—'}</td><td style="font-size:11.5px">${r.escolaNome||'—'}</td><td style="font-size:11.5px">${r.bim||'—'}</td><td style="font-size:11.5px">${r.disc||'—'}</td><td><strong>${r.media||0}</strong></td><td><button class="btn bsm" style="background:#FEF2F2;color:#991B1B;border:none;padding:3px 8px;font-size:11px" onclick="delAval('${r.id}')">×</button></td></tr>`).join('');
 }
-
 function renderProjects(){
-  const g=document.getElementById('projGrid');if(!g)return;
-  g.innerHTML=projList.length===0?'<p style="color:var(--muted);font-size:12.5px">Nenhum projeto. Clique em "+ Novo Projeto".</p>':
-    projList.map(p=>`<div class="pcard"><div class="ptag">🏫 ${p.escolaNome||'—'}</div><h3>${p.nome||'—'}</h3><p>${p.impacto||'—'}</p><div class="pmeta"><span class="badge2 bb2">👤 ${p.resp||'—'}</span><span class="badge2 bgr2">📅 ${p.periodo||'—'}</span><span class="badge2 bg2">🎯 ${p.alvo||'—'}</span></div></div>`).join('');
+const g=document.getElementById('projGrid');if(!g)return;
+g.innerHTML=projList.length===0?'<p style="color:var(--muted);font-size:12.5px">Nenhum projeto. Clique em "+ Novo Projeto".</p>':
+projList.map(p=>`<div class="pcard"><div class="ptag">🏫 ${p.escolaNome||'—'}</div><h3>${p.nome||'—'}</h3><p>${p.impacto||'—'}</p><div class="pmeta"><span class="badge2 bb2">👤 ${p.resp||'—'}</span><span class="badge2 bgr2">📅 ${p.periodo||'—'}</span><span class="badge2 bg2">🎯 ${p.alvo||'—'}</span></div></div>`).join('');
 }
-
 function renderChecklist(){
-  const eid=V2('ck_e');
-  const ck=[{k:'bib',l:'📚 Biblioteca ativa'},{k:'lab',l:'🔬 Laboratório'},{k:'dig',l:'💻 Sala Digital'},{k:'lei',l:'📖 Espaço de Leitura'},{k:'rec',l:'🎯 Recomposição Curricular'},{k:'qua',l:'🏃 Quadra Esportiva'},{k:'art',l:'🎨 Sala de Arte'}];
-  const el=document.getElementById('ckBox');if(!el)return;
-  el.innerHTML=ck.map(c=>{const key=`ck_${eid}_${c.k}`;const s=S.get(key)||'parcial';return`<div class="cki"><span>${c.l}</span><div class="cks ${s}" data-k="${key}" onclick="cycleChk(this)">${s[0].toUpperCase()+s.slice(1)}</div></div>`;}).join('');
+const eid=V2('ck_e');
+const ck=[{k:'bib',l:'📚 Biblioteca ativa'},{k:'lab',l:'🔬 Laboratório'},{k:'dig',l:'💻 Sala Digital'},{k:'lei',l:'📖 Espaço de Leitura'},{k:'rec',l:'🎯 Recomposição Curricular'},{k:'qua',l:'🏃 Quadra Esportiva'},{k:'art',l:'🎨 Sala de Arte'}];
+const el=document.getElementById('ckBox');if(!el)return;
+el.innerHTML=ck.map(c=>{const key=`ck_${eid}_${c.k}`;const s=S.get(key)||'parcial';return`<div class="cki"><span>${c.l}</span><div class="cks ${s}" data-k="${key}" onclick="cycleChk(this)">${s[0].toUpperCase()+s.slice(1)}</div></div>`;}).join('');
 }
 window.cycleChk=function(el){const ss=['ativo','parcial','inativo'],ls=['Ativo','Parcial','Inativo'];const c=ss.indexOf(el.classList[1]);const n=(c+1)%3;el.className='cks '+ss[n];el.textContent=ls[n];S.set(el.dataset.k,ss[n]);};
-
 function renderCal(){
-  const now=new Date();
-  document.getElementById('calTit').textContent=now.toLocaleString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase());
-  const yr=now.getFullYear(),mo=now.getMonth();
-  const evd=evtList.filter(e=>e.date?.startsWith(yr+'-'+String(mo+1).padStart(2,'0'))).map(e=>parseInt(e.date.split('-')[2]));
-  const fd=new Date(yr,mo,1).getDay();
-  const dm=new Date(yr,mo+1,0).getDate();
-  const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  let h=days.map(d=>`<div class="cdh">${d}</div>`).join('');
-  for(let i=0;i<fd;i++)h+=`<div class="cday om"></div>`;
-  for(let d=1;d<=dm;d++)h+=`<div class="cday ${d===now.getDate()?'today':''} ${evd.includes(d)&&d!==now.getDate()?'hev':''}">${d}</div>`;
-  const g=document.getElementById('calGrid');if(g)g.innerHTML=h;
+const now=new Date();
+document.getElementById('calTit').textContent=now.toLocaleString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase());
+const yr=now.getFullYear(),mo=now.getMonth();
+const evd=evtList.filter(e=>e.date?.startsWith(yr+'-'+String(mo+1).padStart(2,'0'))).map(e=>parseInt(e.date.split('-')[2]));
+const fd=new Date(yr,mo,1).getDay();
+const dm=new Date(yr,mo+1,0).getDate();
+const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+let h=days.map(d=>`<div class="cdh">${d}</div>`).join('');
+for(let i=0;i<fd;i++)h+=`<div class="cday om"></div>`;
+for(let d=1;d<=dm;d++)h+=`<div class="cday ${d===now.getDate()?'today':''} ${evd.includes(d)&&d!==now.getDate()?'hev':''}">${d}</div>`;
+const g=document.getElementById('calGrid');if(g)g.innerHTML=h;
 }
-
 function renderAg(){
-  const tc={avaliacao:'br2',visita:'bb2',formacao:'bg2',conselho:'by2',prazo:'br2'};
-  const box=document.getElementById('agBox');if(!box)return;
-  if(evtList.length===0){box.innerHTML='<p style="color:var(--muted);font-size:12.5px;padding:12px 0">Nenhum evento cadastrado.</p>';return;}
-  box.innerHTML=evtList.map(e=>{
-    const d=new Date((e.date||'2025-01-01')+'T12:00:00');
-    const mo=d.toLocaleString('pt-BR',{month:'short'}).replace('.','').toUpperCase();
-    const tc2=Object.entries(tc).find(([k])=>e.type?.toLowerCase().includes(k))?.[1]||'bgr2';
-    return`<div class="eitem"><div class="edate"><strong>${d.getDate()}</strong>${mo}</div><div class="einfo"><p>${e.title||'—'}</p><span>${e.school||''} · ${e.time||''}</span></div><span class="badge2 ${tc2}">${e.type||'evento'}</span></div>`;
-  }).join('');
+const tc={avaliacao:'br2',visita:'bb2',formacao:'bg2',conselho:'by2',prazo:'br2'};
+const box=document.getElementById('agBox');if(!box)return;
+if(evtList.length===0){box.innerHTML='<p style="color:var(--muted);font-size:12.5px;padding:12px 0">Nenhum evento cadastrado.</p>';return;}
+box.innerHTML=evtList.map(e=>{
+const d=new Date((e.date||'2025-01-01')+'T12:00:00');
+const mo=d.toLocaleString('pt-BR',{month:'short'}).replace('.','').toUpperCase();
+const tc2=Object.entries(tc).find(([k])=>e.type?.toLowerCase().includes(k))?.[1]||'bgr2';
+return`<div class="eitem"><div class="edate"><strong>${d.getDate()}</strong>${mo}</div><div class="einfo"><p>${e.title||'—'}</p><span>${e.school||''} · ${e.time||''}</span></div><span class="badge2 ${tc2}">${e.type||'evento'}</span></div>`;
+}).join('');
 }
-
 // ─── CHARTS ───────────────────────────────────────────────
 function initCharts(){
-  const nms=schools.map(s=>s.name.split(' ').slice(-2).join(' '));
-  const freqs=schools.map(s=>s.freq||0);
-  const colors=freqs.map(f=>f>=85?'#10B981':f>=75?'#F59E0B':f>0?'#EF4444':'#CBD5E1');
-  const colorsBg=freqs.map(f=>f>=85?'#10B98133':f>=75?'#F59E0B33':f>0?'#EF444433':'#F1F5F9');
-
-  const opts={plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'#F0F4F8'}},x:{grid:{display:false},ticks:{font:{size:9}}}}};
-
-  const fc=document.getElementById('freqChart');
-  if(fc){if(charts.f)charts.f.destroy();charts.f=new Chart(fc,{type:'bar',data:{labels:nms,datasets:[{data:freqs,backgroundColor:colorsBg,borderColor:colors,borderWidth:2,borderRadius:4}]},options:{...opts}});}
-
-  const fc2=document.getElementById('freqChart2');
-  if(fc2){if(charts.f2)charts.f2.destroy();charts.f2=new Chart(fc2,{type:'bar',data:{labels:nms,datasets:[{data:freqs,backgroundColor:'#0A3D6B22',borderColor:'#0A3D6B',borderWidth:2,borderRadius:4}]},options:{...opts}});}
-
-  const ec=document.getElementById('evolChart');
-  if(ec){if(charts.e)charts.e.destroy();charts.e=new Chart(ec,{type:'line',data:{labels:['Set','Out','Nov','Dez','Jan','Fev'],datasets:[{label:'Freq %',data:[85,86,84,82,84,85],borderColor:'#0A3D6B',backgroundColor:'#0A3D6B15',tension:.4,fill:true,borderWidth:2},{label:'Meta 75%',data:[75,75,75,75,75,75],borderColor:'#EF4444',borderDash:[5,5],borderWidth:1.5,pointRadius:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{min:60,max:100,ticks:{callback:v=>v+'%',font:{size:10}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});}
-
-  const dc=document.getElementById('discChart');
-  if(dc){
-    const discData=avalRec.length?
-      ['Português','Matemática','História','Geografia','Física','Química','Biologia','Inglês'].map(d=>{const r=avalRec.filter(a=>a.disc?.toLowerCase()===d.toLowerCase());return r.length?(r.reduce((s,x)=>s+x.media,0)/r.length).toFixed(1):5;})
-      :[7,6.5,7.5,7,6.8,7,7.2,6.8];
-    if(charts.d)charts.d.destroy();
-    charts.d=new Chart(dc,{type:'radar',data:{labels:['Port.','Mat.','Hist.','Geo.','Fís.','Quím.','Bio.','Ing.'],datasets:[{label:'Médias',data:discData,borderColor:'#0A3D6B',backgroundColor:'#0A3D6B22',borderWidth:2}]},options:{plugins:{legend:{display:false}},scales:{r:{min:4,max:10,ticks:{font:{size:9}}}}}});
-  }
-
-  const ac=document.getElementById('ambChart');
-  if(ac){if(charts.a)charts.a.destroy();charts.a=new Chart(ac,{type:'bar',data:{labels:nms,datasets:[{label:'Ativo',data:schools.map(()=>3),backgroundColor:'#10B981bb',borderRadius:3},{label:'Parcial',data:schools.map(()=>2),backgroundColor:'#F59E0Bbb',borderRadius:3},{label:'Inativo',data:schools.map(()=>2),backgroundColor:'#EF4444bb',borderRadius:3}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9}}},y:{stacked:true,ticks:{font:{size:10}}}}}});}
+const nms=schools.map(s=>s.name.split(' ').slice(-2).join(' '));
+const freqs=schools.map(s=>s.freq||0);
+const colors=freqs.map(f=>f>=85?'#10B981':f>=75?'#F59E0B':f>0?'#EF4444':'#CBD5E1');
+const colorsBg=freqs.map(f=>f>=85?'#10B98133':f>=75?'#F59E0B33':f>0?'#EF444433':'#F1F5F9');
+const opts={plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'#F0F4F8'}},x:{grid:{display:false},ticks:{font:{size:9}}}}};
+const fc=document.getElementById('freqChart');
+if(fc){if(charts.f)charts.f.destroy();charts.f=new Chart(fc,{type:'bar',data:{labels:nms,datasets:[{data:freqs,backgroundColor:colorsBg,borderColor:colors,borderWidth:2,borderRadius:4}]},options:{...opts}});}
+const fc2=document.getElementById('freqChart2');
+if(fc2){if(charts.f2)charts.f2.destroy();charts.f2=new Chart(fc2,{type:'bar',data:{labels:nms,datasets:[{data:freqs,backgroundColor:'#0A3D6B22',borderColor:'#0A3D6B',borderWidth:2,borderRadius:4}]},options:{...opts}});}
+const ec=document.getElementById('evolChart');
+if(ec){if(charts.e)charts.e.destroy();charts.e=new Chart(ec,{type:'line',data:{labels:['Set','Out','Nov','Dez','Jan','Fev'],datasets:[{label:'Freq %',data:[85,86,84,82,84,85],borderColor:'#0A3D6B',backgroundColor:'#0A3D6B15',tension:.4,fill:true,borderWidth:2},{label:'Meta 75%',data:[75,75,75,75,75,75],borderColor:'#EF4444',borderDash:[5,5],borderWidth:1.5,pointRadius:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{min:60,max:100,ticks:{callback:v=>v+'%',font:{size:10}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});}
+const dc=document.getElementById('discChart');
+if(dc){
+const discData=avalRec.length?
+['Português','Matemática','História','Geografia','Física','Química','Biologia','Inglês'].map(d=>{const r=avalRec.filter(a=>a.disc?.toLowerCase()===d.toLowerCase());return r.length?(r.reduce((s,x)=>s+x.media,0)/r.length).toFixed(1):5;})
+:[7,6.5,7.5,7,6.8,7,7.2,6.8];
+if(charts.d)charts.d.destroy();
+charts.d=new Chart(dc,{type:'radar',data:{labels:['Port.','Mat.','Hist.','Geo.','Fís.','Quím.','Bio.','Ing.'],datasets:[{label:'Médias',data:discData,borderColor:'#0A3D6B',backgroundColor:'#0A3D6B22',borderWidth:2}]},options:{plugins:{legend:{display:false}},scales:{r:{min:4,max:10,ticks:{font:{size:9}}}}}});
 }
-
+const ac=document.getElementById('ambChart');
+if(ac){if(charts.a)charts.a.destroy();charts.a=new Chart(ac,{type:'bar',data:{labels:nms,datasets:[{label:'Ativo',data:schools.map(()=>3),backgroundColor:'#10B981bb',borderRadius:3},{label:'Parcial',data:schools.map(()=>2),backgroundColor:'#F59E0Bbb',borderRadius:3},{label:'Inativo',data:schools.map(()=>2),backgroundColor:'#EF4444bb',borderRadius:3}]},options:{plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9}}},y:{stacked:true,ticks:{font:{size:10}}}}}});}
+}
 function updateCharts(){
-  const freqs=schools.map(s=>s.freq||0);
-  const colors=freqs.map(f=>f>=85?'#10B981':f>=75?'#F59E0B':f>0?'#EF4444':'#CBD5E1');
-  const colorsBg=freqs.map(f=>f>=85?'#10B98133':f>=75?'#F59E0B33':f>0?'#EF444433':'#F1F5F9');
-  if(charts.f){charts.f.data.datasets[0].data=freqs;charts.f.data.datasets[0].backgroundColor=colorsBg;charts.f.data.datasets[0].borderColor=colors;charts.f.update();}
-  if(charts.f2){charts.f2.data.datasets[0].data=freqs;charts.f2.update();}
+const freqs=schools.map(s=>s.freq||0);
+const colors=freqs.map(f=>f>=85?'#10B981':f>=75?'#F59E0B':f>0?'#EF4444':'#CBD5E1');
+const colorsBg=freqs.map(f=>f>=85?'#10B98133':f>=75?'#F59E0B33':f>0?'#EF444433':'#F1F5F9');
+if(charts.f){charts.f.data.datasets[0].data=freqs;charts.f.data.datasets[0].backgroundColor=colorsBg;charts.f.data.datasets[0].borderColor=colors;charts.f.update();}
+if(charts.f2){charts.f2.data.datasets[0].data=freqs;charts.f2.update();}
 }
-
 // ─── UI ───────────────────────────────────────────────────
 const PTITLES={dashboard:'Dashboard',escolas:'Escolas',frequencia:'Frequência',avaliacoes:'Avaliações',ambientes:'Ambientes',projetos:'Projetos',calendario:'Calendário'};
 const PSUBS={dashboard:'Visão consolidada · SEFOR 3',escolas:'Dados das escolas acompanhadas',frequencia:'Registro e monitoramento mensal',avaliacoes:'Médias e análise qualitativa',ambientes:'Checklist e infraestrutura',projetos:'Projetos pedagógicos',calendario:'Eventos e agenda'};
-
 window.nav=function(page,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
-  document.getElementById('page-'+page)?.classList.add('on');
-  if(el)el.classList.add('on');
-  document.getElementById('ptitle').textContent=PTITLES[page]||page;
-  document.getElementById('psub').textContent=PSUBS[page]||'';
-  if(window.innerWidth<=768)document.getElementById('sidebar').classList.remove('open');
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+document.getElementById('page-'+page)?.classList.add('on');
+if(el)el.classList.add('on');
+document.getElementById('ptitle').textContent=PTITLES[page]||page;
+document.getElementById('psub').textContent=PSUBS[page]||'';
+if(window.innerWidth<=768)document.getElementById('sidebar').classList.remove('open');
 };
 window.openMod=function(id){document.getElementById('mod-'+id)?.classList.add('open');};
 window.closeMod=function(id){document.getElementById('mod-'+id)?.classList.remove('open');};
 document.querySelectorAll('.mov').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
-
 function V(id){return document.getElementById(id)?.value?.trim()||'';}
 function V2(id){const el=document.getElementById(id);return el?el.options?.[el.selectedIndex]?.value||el.value:'';}
 function showErr(id,msg){const el=document.getElementById(id);if(el){el.style.display='block';el.textContent=msg;}}
 let tt;
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),3000);}
-
-
 // ─── JSONBIN SYNC ─────────────────────────────────────────
 const JB_KEY = '$2a$10$EgmDaZoOXnzZxoksPi/1XeT/JY9flCE8BHg38v5gdUqkki2Dz0Qjy';
 const JB_URL = 'https://api.jsonbin.io/v3/b';
-let JB_BIN_ID = localStorage.getItem('sefor_bin_id') || null;
-
 function jbSetStatus(msg, ok) {
-  const bar = document.getElementById('gdBar');
-  const txt = document.getElementById('gdTxt');
-  if (bar) bar.className = 'gd-bar' + (ok === true ? ' ok' : ok === false ? ' err' : '');
-  if (txt) txt.textContent = msg;
+const bar = document.getElementById('gdBar');
+const txt = document.getElementById('gdTxt');
+if (bar) bar.className = 'gd-bar' + (ok === true ? ' ok' : ok === false ? ' err' : '');
+if (txt) txt.textContent = msg;
 }
-
 window.jbSalvar = async function() {
-  jbSetStatus('Salvando na nuvem...', null);
-  try {
-    const data = {schools, freqRec, avalRec, projList, evtList, savedAt: new Date().toISOString()};
-    let res, result;
-    if (JB_BIN_ID) {
-      // Atualiza bin existente
-      res = await fetch(`${JB_URL}/${JB_BIN_ID}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': JB_KEY
-        },
-        body: JSON.stringify(data)
-      });
-    } else {
-      // Cria novo bin
-      res = await fetch(JB_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': JB_KEY,
-          'X-Bin-Name': 'SEFOR3-dados',
-          'X-Bin-Private': 'true'
-        },
-        body: JSON.stringify(data)
-      });
-      result = await res.json();
-      JB_BIN_ID = result.metadata?.id;
-      if (JB_BIN_ID) localStorage.setItem('sefor_bin_id', JB_BIN_ID);
-    }
-    if (!result) result = await res.json();
-    if (res.ok) {
-      jbSetStatus('☁️ Salvo: ' + new Date().toLocaleTimeString('pt-BR'), true);
-      toast('☁️ Dados salvos na nuvem!');
-    } else {
-      throw new Error(result.message || 'Erro desconhecido');
-    }
-  } catch(e) {
-    jbSetStatus('Erro ao salvar', false);
-    toast('❌ Erro ao salvar: ' + e.message);
-  }
+jbSetStatus('Salvando na nuvem...', null);
+try {
+const data = {schools, freqRec, avalRec, projList, evtList, savedAt: new Date().toISOString()};
+let res, result;
+if (JB_BIN_ID) {
+res = await fetch(`${JB_URL}/${JB_BIN_ID}`, {
+method: 'PUT',
+headers: { 'Content-Type': 'application/json', 'X-Master-Key': JB_KEY },
+body: JSON.stringify(data)
+});
+} else {
+res = await fetch(JB_URL, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'X-Master-Key': JB_KEY, 'X-Bin-Name': 'SEFOR3-dados', 'X-Bin-Private': 'true' },
+body: JSON.stringify(data)
+});
+result = await res.json();
+JB_BIN_ID = result.metadata?.id;
+if (JB_BIN_ID) localStorage.setItem('sefor_bin_id', JB_BIN_ID);
+}
+if (!result) result = await res.json();
+if (res.ok) {
+jbSetStatus('☁️ Salvo: ' + new Date().toLocaleTimeString('pt-BR'), true);
+toast('☁️ Dados salvos na nuvem!');
+} else { throw new Error(result.message || 'Erro desconhecido'); }
+} catch(e) {
+jbSetStatus('Erro ao salvar', false);
+toast('❌ Erro ao salvar: ' + e.message);
+}
 };
-
 window.jbCarregar = async function() {
-  if (!JB_BIN_ID) {
-    toast('⚠️ Salve os dados primeiro neste dispositivo para criar a nuvem.');
-    return;
-  }
-  jbSetStatus('Carregando da nuvem...', null);
-  try {
-    const res = await fetch(`${JB_URL}/${JB_BIN_ID}/latest`, {
-      headers: { 'X-Master-Key': JB_KEY }
-    });
-    const result = await res.json();
-    if (!res.ok) throw new Error(result.message || 'Erro');
-    const data = result.record;
-    if (data.schools) schools = data.schools;
-    if (data.freqRec) freqRec = data.freqRec;
-    if (data.avalRec) avalRec = data.avalRec;
-    if (data.projList) projList = data.projList;
-    if (data.evtList) evtList = data.evtList;
-    saveData(); renderAll();
-    jbSetStatus('☁️ Carregado: ' + new Date().toLocaleTimeString('pt-BR'), true);
-    toast('✅ Dados carregados da nuvem!');
-  } catch(e) {
-    jbSetStatus('Erro ao carregar', false);
-    toast('❌ Erro: ' + e.message);
-  }
+if (!JB_BIN_ID) { toast('⚠️ Salve os dados primeiro neste dispositivo para criar a nuvem.'); return; }
+jbSetStatus('Carregando da nuvem...', null);
+try {
+const res = await fetch(`${JB_URL}/${JB_BIN_ID}/latest`, { headers: { 'X-Master-Key': JB_KEY } });
+const result = await res.json();
+if (!res.ok) throw new Error(result.message || 'Erro');
+const data = result.record;
+if (data.schools) schools = data.schools;
+if (data.freqRec) freqRec = data.freqRec;
+if (data.avalRec) avalRec = data.avalRec;
+if (data.projList) projList = data.projList;
+if (data.evtList) evtList = data.evtList;
+saveData(); renderAll();
+jbSetStatus('☁️ Carregado: ' + new Date().toLocaleTimeString('pt-BR'), true);
+toast('✅ Dados carregados da nuvem!');
+} catch(e) {
+jbSetStatus('Erro ao carregar', false);
+toast('❌ Erro: ' + e.message);
+}
 };
-
-// Auto-salva a cada 3 minutos
 setInterval(() => { if (JB_BIN_ID) jbSalvar(); }, 3 * 60 * 1000);
-
-
 window.copiarCodigo = function(){
-  const el = document.getElementById('sinc_code');
-  if (!JB_BIN_ID) { toast('⚠️ Salve na nuvem primeiro para gerar o código.'); return; }
-  el.value = JB_BIN_ID;
-  navigator.clipboard.writeText(JB_BIN_ID).then(()=>toast('✅ Código copiado! Cole no outro dispositivo.')).catch(()=>{el.select();document.execCommand('copy');toast('✅ Código copiado!');});
+const el = document.getElementById('sinc_code');
+if (!JB_BIN_ID) { toast('⚠️ Salve na nuvem primeiro para gerar o código.'); return; }
+el.value = JB_BIN_ID;
+navigator.clipboard.writeText(JB_BIN_ID).then(()=>toast('✅ Código copiado!')).catch(()=>{el.select();document.execCommand('copy');toast('✅ Código copiado!');});
 };
 window.aplicarCodigo = function(){
-  const code = document.getElementById('sinc_input').value.trim();
-  if (!code) { toast('⚠️ Cole o código primeiro.'); return; }
-  JB_BIN_ID = code;
-  localStorage.setItem('sefor_bin_id', code);
-  closeMod('sinc');
-  jbCarregar();
+const code = document.getElementById('sinc_input').value.trim();
+if (!code) { toast('⚠️ Cole o código primeiro.'); return; }
+JB_BIN_ID = code;
+localStorage.setItem('sefor_bin_id', code);
+closeMod('sinc');
+jbCarregar();
 };
-// Show bin_id in modal when opened
 const origOpenMod = window.openMod;
 window.openMod = function(id) {
-  if (id === 'sinc') {
-    const el = document.getElementById('sinc_code');
-    if (el) el.value = JB_BIN_ID || '';
-  }
-  origOpenMod(id);
+if (id === 'sinc') { const el = document.getElementById('sinc_code'); if (el) el.value = JB_BIN_ID || ''; }
+origOpenMod(id);
 };
-
 window.toast=toast;
-
-setInterval(() => { if (gdToken) gdSalvar(); }, 5 * 60 * 1000);
-
-
 // ─── PWA ──────────────────────────────────────────────────
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();
-  deferredPrompt=e;
-  setTimeout(()=>document.getElementById('instbanner').classList.add('show'),3000);
+e.preventDefault();
+deferredPrompt=e;
+setTimeout(()=>document.getElementById('instbanner').classList.add('show'),3000);
 });
 window.addEventListener('appinstalled',()=>{
-  document.getElementById('instbanner').classList.remove('show');
-  toast('✅ SEFOR 3 instalado com sucesso!');
-  deferredPrompt=null;
+document.getElementById('instbanner').classList.remove('show');
+toast('✅ SEFOR 3 instalado com sucesso!');
+deferredPrompt=null;
 });
 document.addEventListener('DOMContentLoaded',()=>{
-  const btn=document.getElementById('instBtn');
-  if(btn)btn.addEventListener('click',async()=>{
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      const{outcome}=await deferredPrompt.userChoice;
-      if(outcome==='accepted')toast('✅ Instalando SEFOR 3...');
-      deferredPrompt=null;
-      document.getElementById('instbanner').classList.remove('show');
-    } else {
-      toast('📱 No iOS: toque em Compartilhar → Adicionar à Tela de Início');
-    }
-  });
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  }
+const btn=document.getElementById('instBtn');
+if(btn)btn.addEventListener('click',async()=>{
+if(deferredPrompt){
+deferredPrompt.prompt();
+const{outcome}=await deferredPrompt.userChoice;
+if(outcome==='accepted')toast('✅ Instalando SEFOR 3...');
+deferredPrompt=null;
+document.getElementById('instbanner').classList.remove('show');
+} else { toast('📱 No iOS: Compartilhar → Adicionar à Tela de Início'); }
+});
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
 });
 </script>
 </body>
